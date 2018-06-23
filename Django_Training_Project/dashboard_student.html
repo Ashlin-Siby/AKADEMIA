@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/dashboard_student_style.css" />
     <!-- <script src="main.js"></script> -->
 </head>
 
@@ -24,9 +24,6 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a href="#study_corner" class="nav-link">Study Corner</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#events" class="nav-link">Events</a>
                 </li>
                 <li class="nav-item">
                     <a href="#calendar" class="nav-link">Calendar</a>
@@ -47,7 +44,7 @@
     </nav>
     <span id="mainBody">
         <div class="container" id="menuContent">
-            <img src="images/student_128.png" alt="" align="middle">
+            <img src="images/student_128.png" alt="User Image" align="middle">
             <h2>Keshav Garg</h2>
             <hr>
             <h2>Semester-4
@@ -58,22 +55,15 @@
         </div>
         <div class="container" id="mainContent">
            <h1>Welcome!!</h1> 
-           <div class="row" id="features_card_view">
-                <div class="card col-lg-4 col-6">
+           <div id="features_card_view">
+                <div class="card">
                     <img src="images/study_corner.jpg" class="card-img-top" alt="Study Corner">
                     <div class="card-body">
                         <h5 class="card-title">Study Corner</h5>
                         <a href="#" class="btn btn-primary">Let's Go</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 col-6">
-                    <img src="images/events.jpg" class="card-img-top" alt="Events"  style="height: 200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Events</h5>
-                        <a href="#" class="btn btn-primary">Let's Go</a>
-                    </div>
-                </div>
-                <div class="card col-lg-4 col-6">
+                <div class="card">
                     <img src="images/calendar.jpg" class="card-img-top" alt="Calendar"">
                     <div class="card-body">
                         <h5 class="card-title">Academic and Holiday Calendar</h5>
