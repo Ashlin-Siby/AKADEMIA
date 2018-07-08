@@ -1,5 +1,7 @@
 from django import forms
 from .models import MyCustomUser
+from . import models
+from .models import Subjects
 
 
 class UserCreationForm(forms.ModelForm):
@@ -24,3 +26,15 @@ class UserCreationForm(forms.ModelForm):
             user.save()
 
         return user
+
+
+class FileUploaderForm(forms.ModelForm):
+
+    class Meta():
+        model = models.Files
+        fields = ('filePath', 'fileType', 'fileURL')
+        widgets = {
+            'filePath' : forms.FileInput(attrs={'class':'form-control-file'}),
+            'fileType' : forms.Select(attrs={'class':'form-control'}),
+            'fileURL' : forms.URLInput(attrs={'class':'form-control'}),
+        }

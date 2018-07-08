@@ -1,0 +1,595 @@
+[
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 1,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$eEJib1BmN1Q4dmxl$F77VEzslFwjwbVUI/Fbkbw",
+      "last_login": "2018-07-04T12:11:18.739Z",
+      "username": "paulhill",
+      "email": "rebecca18@fisher.net",
+      "first_name": "Gregg",
+      "last_name": "Munoz",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 2,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$VkxlQ1NFdW5IeWRt$KUup+7pXExAydpL9yCgn4g",
+      "last_login": null,
+      "username": "darrenmendoza",
+      "email": "ajohnson@smith.org",
+      "first_name": "Scott",
+      "last_name": "Rogers",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 3,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$aTYxanV4bFZ0Vm1G$kb19Ahq5rcNxMetRvhGZSQ",
+      "last_login": null,
+      "username": "ianjohnson",
+      "email": "jacobjackson@barnes.net",
+      "first_name": "Scott",
+      "last_name": "Mccarty",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 4,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$bFkzY0RIRXAxTnZz$U1rlr+eLbZxeV5aIDzzb7A",
+      "last_login": null,
+      "username": "smithchristina",
+      "email": "mgray@hotmail.com",
+      "first_name": "Bradley",
+      "last_name": "Johnson",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 5,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NEUxbm1xVXlrMks0$86netMCglwx/BREmNGmKXg",
+      "last_login": null,
+      "username": "albertgonzalez",
+      "email": "danielgarcia@gmail.com",
+      "first_name": "Kimberly",
+      "last_name": "Holmes",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 6,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$WXc3S0JuUWR3Qjcx$Vl19Wm2fwyOHiX/jR3fgAA",
+      "last_login": null,
+      "username": "tcoleman",
+      "email": "yatestrevor@webb-hodge.biz",
+      "first_name": "Francisco",
+      "last_name": "Foley",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 7,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$UVQ1QVYwdnVzTFdU$ju2iYcj8qL+tmDGK/bJE+A",
+      "last_login": null,
+      "username": "alowe",
+      "email": "kingwilliam@elliott.com",
+      "first_name": "Sergio",
+      "last_name": "May",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 8,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$aTdlU3NmR0tPclFs$gjNGAUlVEBrF11pNpYNSTQ",
+      "last_login": null,
+      "username": "hernandezaustin",
+      "email": "amaxwell@hernandez.info",
+      "first_name": "Donna",
+      "last_name": "Jackson",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 9,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$cjJrREJNeFk4cEJG$w6i57OohYzoK9Osc8jgRdA",
+      "last_login": null,
+      "username": "uhawkins",
+      "email": "richardhoward@hotmail.com",
+      "first_name": "Andrew",
+      "last_name": "Ho",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 10,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$OVpTNUhIZ1U1WXI2$nJvNLz2fJGNTZXM9RrM3UQ",
+      "last_login": null,
+      "username": "jackie68",
+      "email": "vhays@gmail.com",
+      "first_name": "Gary",
+      "last_name": "Evans",
+      "is_admin": false,
+      "is_staff": true,
+      "is_student": false,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 11,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NFBuTVdkWHJMRjht$YayAj3XDA90G0B78tKO+Vg",
+      "last_login": "2018-07-08T07:27:25.873Z",
+      "username": "KVBOOM",
+      "email": "kggarg14@gmail.com",
+      "first_name": "Keshav",
+      "last_name": "Garg",
+      "is_admin": true,
+      "is_staff": true,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 12,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$M3hRR3NlSDU1eDdD$WvZY1S3fyPfg1G+AE8S0aQ",
+      "last_login": null,
+      "username": "CO16301",
+      "email": "ryanmay@mitchell.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 13,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$VXd3bEsyQzdIYUY0$HVo36kKv+aYA6vvxGMeeWg",
+      "last_login": "2018-07-04T18:13:42.699Z",
+      "username": "CO16302",
+      "email": "annale@walters-glover.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 14,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Wjdla2FkWldlaWg0$eg2Y/d6NH9ZxDal/kssI6g",
+      "last_login": null,
+      "username": "CO16303",
+      "email": "montgomerytara@kennedy-scott.org",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 15,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$SXNaeTVOVkpHTzNm$vxDIheQo8menZ+n3cv/v6A",
+      "last_login": null,
+      "username": "CO16304",
+      "email": "jacobburke@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 16,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$alUzaXgwWTFwd2xJ$dCfxVeTL60cl6EL4vZDuhg",
+      "last_login": null,
+      "username": "CO16305",
+      "email": "samuel72@hotmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 17,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$NjFEdG41NVFyejZw$17Nwumnmvnh6v5aQUJBRoQ",
+      "last_login": null,
+      "username": "CO16306",
+      "email": "conwayfelicia@yahoo.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 18,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$OWFaRFV0cU1Ld3ow$xwtNPmMDKwg/QdGTIdqxRQ",
+      "last_login": null,
+      "username": "CO16307",
+      "email": "danielthomas@ritter.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 19,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$Z1B0cDFGN3B1VFAy$+BQnKpaty4dAJO2JZWTOUQ",
+      "last_login": null,
+      "username": "CO16308",
+      "email": "mprice@hotmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 20,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$RUpNaDhFYVdGVHY1$HeIR7ItlaEuid04Xo1DIcw",
+      "last_login": null,
+      "username": "CO16309",
+      "email": "campbellashley@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 21,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MnppZDlGVVpkcjZu$uTaRBwSYnYattTtOWQJPAw",
+      "last_login": null,
+      "username": "CO16310",
+      "email": "tramsey@clark.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 22,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$ZWgybVhrM0ZlZXUz$WBjQ4NWfjsOPFK+Dwqz2TQ",
+      "last_login": null,
+      "username": "CO16311",
+      "email": "davisrobert@hanna.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 23,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$bktaTTBvN2hTUURn$nelFIYX7iwbh0vzwV5yniQ",
+      "last_login": null,
+      "username": "CO16312",
+      "email": "williamrivers@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 24,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$bkhJUUZxcE9ZNXJB$Zq7sXwvtVcKTp/KKmEGsmg",
+      "last_login": null,
+      "username": "CO16313",
+      "email": "ryan92@brandt-harris.net",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 25,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$R0VFb0ZweHlwSnUx$wbg41gXpiSP/NUvAa++kmg",
+      "last_login": null,
+      "username": "CO16314",
+      "email": "jaimestephens@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 26,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$T0pTaHJtdlNaYm12$lvj6TqFOLyZmIy8/Q+TFzg",
+      "last_login": null,
+      "username": "CO16315",
+      "email": "delacruzjessica@whitehead.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 27,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MFJza0lIRnF5d0do$NXs5GNRGZO4kEB/dZgW/Xw",
+      "last_login": null,
+      "username": "CO16316",
+      "email": "melissa01@callahan.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 28,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$anJQME1xdUtuMFJw$XYYV0dC+3OeLD7yEf9tQHw",
+      "last_login": null,
+      "username": "CO16317",
+      "email": "mccartyeileen@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 29,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$STNhUml0eXcwc3A5$c5AMxdZ/4OAFw3w+VbkiIw",
+      "last_login": null,
+      "username": "CO16318",
+      "email": "fjohnson@miller-king.org",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 30,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$RFhuYVFxcFhneG9C$oQrlPsWo8gEUkrOBxP9DkQ",
+      "last_login": null,
+      "username": "CO16319",
+      "email": "henryward@hotmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.mycustomuser",
+    "pk": 31,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$R3NIbVE5SFg1Z09u$VLavVcpaX37gYGNJmQnKbg",
+      "last_login": null,
+      "username": "CO16320",
+      "email": "hamptonamanda@gmail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_admin": false,
+      "is_staff": false,
+      "is_student": true,
+      "is_teacher": false
+    }
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2012,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2013,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2014,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2015,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2016,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.batch",
+    "pk": 2017,
+    "fields": {}
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 1,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2017
+    }
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 2,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2016
+    }
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 3,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2015
+    }
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 4,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2014
+    }
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 5,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2013
+    }
+  },
+  {
+    "model": "summer_project.semester",
+    "pk": 6,
+    "fields": {
+      "semesterNo": 1,
+      "batchYear": 2012
+    }
+  },
+  {
+    "model": "summer_project.subjects",
+    "pk": 1,
+    "fields": {
+      "subjectCode": "CS101",
+      "subjectName": "Introduction To Computer Science",
+      "semesterNo": 2,
+      "teacherName": "Gregg Munoz"
+    }
+  },
+  {
+    "model": "summer_project.subjects",
+    "pk": 2,
+    "fields": {
+      "subjectCode": "CS102",
+      "subjectName": "Programming Fundamentals",
+      "semesterNo": 2,
+      "teacherName": "Er.Gary Evans"
+    }
+  }

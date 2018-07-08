@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import TeacherInfo,StudentInfo
 from django.contrib.auth.admin import Group
 from .forms import UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import MyCustomUser
-
+from . import models
 # Register your models here.
 admin.site.unregister(Group)
 
@@ -22,6 +20,11 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('username','email')
 
 
-admin.site.register(MyCustomUser,UserAdmin)
-admin.site.register(TeacherInfo)
-admin.site.register(StudentInfo)
+admin.site.register(models.MyCustomUser,UserAdmin)
+admin.site.register(models.TeacherInfo)
+admin.site.register(models.StudentInfo)
+admin.site.register(models.EventsInfo)
+admin.site.register(models.Batch)
+admin.site.register(models.Semester)
+admin.site.register(models.Subjects)
+admin.site.register(models.Files)
