@@ -1,0 +1,177 @@
+
+body{
+   /*background: #000000; fallback for old browsers */
+  /*background: -webkit-linear-gradient(to right, #000000, #434343); /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to right, #000000, #434343);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+@font-face {
+    font-family: 'eraserdust';
+    src: url('../fonts/eraserdust-webfont.woff2') format('woff2'),
+         url('fonts/eraserdust-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.heading1{
+font-family: 'eraserdust', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+color: rgba(231, 236, 253, 0.93);
+font-size: 100px;
+margin-bottom: 15px;
+}
+
+
+.flexbox
+{
+width : 100%;
+height :auto;
+display: flex;
+flex-direction: row;
+
+justify-content: space-around;
+}
+
+.boxl{
+width : 50%;
+
+}
+
+.boxr{
+width : 30%;
+
+}
+
+.text-content{
+	font-family: 'eraserdust', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+color: rgba(231, 236, 253, 0.93);
+font-size: 20px;
+}
+
+.myButton {
+	-moz-box-shadow:inset 0px 1px 3px 0px #000000;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #000000;
+	box-shadow:inset 0px 1px 3px 0px #000000;
+	background-color:transparent;
+	display:inline-block;
+	cursor:pointer;
+	color:#e7ecfd;
+	//font-family:Arial;
+	font-size:25px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #33ffe0;
+	width:200px;
+}
+.myButton:hover {
+	background-color:transparent;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.dontDisplay{
+display: none;
+}
+.displayIt{
+display: block;
+	padding-top: 100px;
+}
+
+#stud , #teach , #admin {
+	width:100%;
+	margin :10px;
+}
+
+@import url('http://fonts.googleapis.com/css?family=Roboto:400');
+body {
+  background-color:#fff;
+  -webkit-font-smoothing: antialiased;
+  font: normal 14px Roboto,arial,sans-serif;
+}
+
+.container {
+    padding: 25px;
+    position: fixed;
+}
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+h4 {
+ border:0 solid #fff;
+ border-bottom-width:1px;
+ padding-bottom:10px;
+ text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    margin:20px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+@media screen and (max-width: 686px) {
+
+.flexbox{
+	  flex-direction: column;
+}
+
+.boxl{
+width:95%;
+margin: auto;
+}
+
+.boxr{
+width:80%;
+margin: auto;
+}
+
+#unwanted{
+	display: none;
+}
+  .displayIt{
+  	padding-top: 5px;
+  }
+  .myButton{
+  	font-size: 20px;
+  }
+  .heading1{
+  	font-size: 50px;
+  }
+}
+
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
