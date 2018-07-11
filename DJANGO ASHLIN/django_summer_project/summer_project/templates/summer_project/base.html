@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/dashboard_student_style.css" %}" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!--<script src="main.js"></script> -->
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <a href="{% url 'summer_project:dashboard' %}" class="navbar-brand">Dashboard</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="#study_corner" class="nav-link">Study Corner</a>
+            </li>
+            <li class="nav-item">
+                <a href="#calendar" class="nav-link">Calendar</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav" style="float: right;">
+            <li class="nav-item dropdown">
+                <p href="#study_corner" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{% static "images/student_128.png" %}" width="30px" height="30px" class="d-inline-block
+                    align-top" style="border-radius: 50%">{{user.username}} {{user.first_name}}</p>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% if user.is_student %}
+                      <a class="dropdown-item" href="/django/student/{{studentUser_pk}} ">Profile</a>
+                  {% elif user.is_staff %}
+                        <a class="dropdown-item" href="/django/teacher/{{teacherUser_pk}} ">Profile</a>
+                  {% endif %}
+
+
+
+
+                    <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<span id="mainBody">
+        <div class="container" id="menuContent">
+            <img src="{% static "images/student_128.png" %}" alt="User Image" align="middle">
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            {% if user.is_student %}
+              <hr>
+              <h2>Semester-{{current_sem}}
+              <sup>th</sup></h2>
+              <h3>{{current_batch}}</h3>
+            {% elif user.is_staff %}
+
+            {% endif %}
+        </div>
+        <div class="container" id="mainContent">
+           {% block mainblock %}
+           {% endblock %}
+        </div>
+    </span>
+</body>
+
+</html>

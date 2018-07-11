@@ -1,0 +1,71 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+          <div class="panel panel-info" style="color:#fff">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{user.username}}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+
+                <br>
+                <div class=" col-md-9 col-lg-9 ">
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Department:</td>
+                        <td>{{teacher_details.department}}</td>
+                      </tr>
+                      <tr>
+                        <td>Designation</td>
+                        <td>{{teacher_details.designation}}</td>
+                      </tr>
+                      <tr>
+                        <td>Area Of Specialization</td>
+                        <td>{{teacher_details.specialization_area}}</td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Educational Qualification</td>
+                        <td>{{teacher_details.education_qualification}}</td>
+                      </tr>
+                      <tr>
+                      <td>Additional Role</td>
+                      <td>{{teacher_details.add_role}}</td>
+                    </tr>
+                    <tr>
+                    <td>Website Link</td>
+                    <td>{{teacher_details.web_link}}</td>
+                  </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>{{teacher_details.contact}}(Mobile)
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock %}
