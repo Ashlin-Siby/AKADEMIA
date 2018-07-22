@@ -1,0 +1,15 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class='btn btn-primary' value="Submit">
+
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+          <div class="panel panel-info" style="color:#fff">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{user.username}}</h3>
+            </div>
+            <div class="panel-body">
+            <br>  <div class="row">
+                <div class="col-md-6 col-lg-6 " align="center">
+                  {%if student_details.pic%}
+                    <img alt="User Pic" src="../..{{student_details.pic.url}}" class="img-circle img-responsive"  width="250px" height="300px">
+                  {%else%}
+                    <img alt="User Pic" src="" class="img-circle img-responsive">
+                  {%endif%}
+                </div>
+                <div class=" col-md-6 col-lg-6 ">
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>First Name:</td>
+                        <td>{{user.first_name}}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name:</td>
+                        <td>{{user.last_name}}</td>
+                      </tr>
+                      <tr>
+                        <td>Department:</td>
+                        <td>{{student_details.department}}</td>
+                      </tr>
+                      <tr>
+                        <td>Semester</td>
+                        <td>{{student_details.semester}}</td>
+                      </tr>
+                      <tr>
+                        <td>Batch</td>
+                        <td>{{student_details.batch.batchYear}}</td>
+                      </tr>
+
+                             <tr>
+                        <td>Roll No.</td>
+                        <td>{{student_details.roll_no}}</td>
+                      </tr>
+                        <tr>
+                        <td>Fathers Name</td>
+                        <td>{{student_details.father_name}}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                      </tr>
+                      <tr>
+                        <td>Phone Number</td>
+                        <td>{{student_details.contact}}(Mobile)
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="col-md-12 col-lg-12 " align="center">
+                  <a href="{% url 'summer_project:studprofileedit' pk=studentUser.pk%}" align="right" type="button" class="btn btn-warning">Edit Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="{% url 'summer_project:changepassword' pk=studentUser.pk %}" align="right"  type="button" class="btn btn-warning">Change Passwword</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock %}

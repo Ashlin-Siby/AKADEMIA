@@ -1,0 +1,14 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<head>
+    <title>Study Corner | Confirm Delete</title>
+</head>
+<h2>Delete</h2>
+<form method="post">
+        {% csrf_token %}
+        <p>Are You Sure you Want to DELETE {{ object.fileName }}?</p>
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <a type="button" class="btn btn-warning" onclick="goBack()">Cancel</a>
+    </form>
+{% endblock%}

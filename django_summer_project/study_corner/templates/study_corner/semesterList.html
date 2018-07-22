@@ -1,0 +1,15 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<head>
+    <title>Study Corner | Semester(s)</title>
+</head>
+<h2>Batch: {{year}} </h2>
+<ul class="list-group">
+    {% if user.is_student %}
+    {% for entry in semester_list %}
+    <a href="{% url 'study_corner:subjectslist' type_pk=type year_pk=year sem_pk=entry.semesterNo %}" class="list-group-item list-group-item-action">Semester: {{entry.semesterNo}}</a>
+    {% endfor %}
+    {% endif %}
+</ul>
+{% endblock %}

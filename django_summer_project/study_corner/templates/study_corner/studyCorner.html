@@ -1,0 +1,50 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<!--<div class="container" id="mainContent">-->
+    <head>
+        <title>Study Corner</title>
+    </head>
+    <h1>Welcome To Study Corner!!</h1>
+    <div id="features_card_view_2">
+        {% if user.is_student %}
+        <div class="card">
+            <img src="{% static "images/notes.jpg " %}" class="card-img-top" alt="Notes">
+            <div class="card-body">
+                <h5 class="card-title">Notes</h5>
+                <a href="{% url 'study_corner:batchlist' type_pk='notes' %}" class="btn btn-primary">Let's Go</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static "images/question_paper.png" %}" class="card-img-top" alt="Question Papers" id="study_Corner_qp">
+            <div class="card-body ">
+                <h5 class="card-title ">Question Papers</h5>
+                <a href="{% url 'study_corner:batchlist' type_pk='question_paper' %}" class="btn btn-primary ">Let's Go</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static "images/study_material.png" %}" class="card-img-top" alt="Study Material" >
+            <div class="card-body ">
+                <h5 class="card-title ">Study Material</h5>
+                <a href="{% url 'study_corner:sm_subjects' sm_pk='study_material' %}" class="btn btn-primary ">Let's Go</a>
+            </div>
+        </div>
+        {% elif user.is_staff %}
+        <div class="card">
+            <img src="{% static "images/study_material.png" %}" class="card-img-top" alt="Study Material" >
+            <div class="card-body ">
+                <h5 class="card-title ">Study Material</h5>
+                <a href="{% url 'study_corner:t_subjectslist' t_type_pk='study_material' %}" class="btn btn-primary ">Let's Go</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static "images/question_paper.png" %}" class="card-img-top" alt="Question Papers" id="study_Corner_qp">
+            <div class="card-body ">
+                <h5 class="card-title ">Question Papers</h5>
+                <a href="{% url 'study_corner:t_subjectslist' t_type_pk='question_paper' %}" class="btn btn-primary ">Let's Go</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+<!--</div>-->
+{% endblock %}

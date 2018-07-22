@@ -1,0 +1,29 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+<!--<div class="container" id="mainContent">-->
+    <head>
+        <title>Student Dashboard</title>
+    </head>
+    <h1>Welcome!!</h1>
+    <div id="features_card_view">
+        {% if user.is_student or user.is_staff %}
+        <div class="card">
+            <img src="{% static "images/study_corner.jpg" %}" class="card-img-top" alt="Study Corner">
+            <div class="card-body">
+                <h5 class="card-title">Study Corner</h5>
+                <a href="{% url 'study_corner:studyCorner' %}" class="btn btn-primary">Let's Go</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static "images/calendar.jpg" %}" class="card-img-top" alt="Calendar" ">
+            <div class="card-body ">
+                <h5 class="card-title ">Academic and Holiday Calendar</h5>
+                <a href="# " class="btn btn-primary ">Let's Go</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+<!--</div>-->
+{% endblock %}
