@@ -1,0 +1,7 @@
+- added study corner link
+- login template corrected removed all buttons and kept one login form for all users
+- display alert on invalid user login
+- display alert on invalid user credentials
+- user can upload only notes n question papers
+- teacher can only upload study material and question papers
+- only assigned teacher can upload/delete there study material, no other teacher can upload/delete study material of other teachers

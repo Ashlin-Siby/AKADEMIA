@@ -1,0 +1,6 @@
+- event can be deleted by the user who has uploaded that event
+	- add uploadedBy(foreign MyCustomUser) field in events models
+- display current month events only
+- add condition on add entry button (visible to teachers or admin only)
+- on date click, display current date events in events box
+- in calendar , if there is an event on a particular date add a symbol/mark (dot symbol on anything else)

@@ -1,4 +1,4 @@
-#!c:\users\keshav garg\desktop\django\django\djangoprojectenv\scripts\python.exe
+#!C:\Users\Keshav Garg\Desktop\Django\DjangoProjectEnv\Scripts\python.exe
 # See http://cens.ioc.ee/projects/f2py2e/
 from __future__ import division, print_function
 

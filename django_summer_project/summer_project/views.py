@@ -29,14 +29,14 @@ class index(View):
         if user:
             print("Authentication Successful")
             login(request, user)
-            if user.is_admin and user.is_student and user.is_staff:
-                # return render(request,'summer_project/dashboard.html',context={})
-                return HttpResponse("Admin Login Successful")
-            elif user.is_student:
+            if user.is_staff:
+                print("Admin Login Successful")
+                return render(request, 'summer_project/dashboard.html')
+            elif user.is_student :
                 studentUser = StudentInfo.objects.get(user=user)
                 profile_data = {'current_sem': studentUser.semester, 'studentUser': studentUser}
                 return render(request, 'summer_project/dashboard.html', context=profile_data)
-            elif user.is_staff:
+            elif user.is_teacher and user.is_staff==False:
                 print("Teacher Login Successful")
                 teacherUser = TeacherInfo.objects.get(user=user)
                 return render(request, 'summer_project/dashboard.html', context={'teacherUser': teacherUser})
@@ -58,11 +58,11 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff==False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
-        elif user.is_staff:
+        elif user.is_teacher and user.is_staff==False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
@@ -85,7 +85,7 @@ class StudProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff==False:
             studentUser = StudentInfo.objects.get(user=user)
             context['media_dir'] = settings.MEDIA_ROOT
             context['current_sem'] = studentUser.semester
@@ -103,7 +103,7 @@ class TeachProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_staff:
+        if user.is_teacher:
             teacherUser = TeacherInfo.objects.get(user=user)
             print(teacherUser.pic)
             context['teacherUser'] = teacherUser
@@ -121,7 +121,7 @@ class StudentProfileEdit(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff==False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
@@ -141,7 +141,7 @@ class TeacherProfileEdit(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_staff:
+        if user.is_teacher:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
@@ -167,10 +167,10 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff==False:
             studentUser = StudentInfo.objects.get(user=user)
             context['studentUser'] = studentUser
-        elif user.is_staff:
+        elif user.is_teacher and user.is_staff==False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context

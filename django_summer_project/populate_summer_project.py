@@ -6,8 +6,8 @@ import django
 
 django.setup()
 
-from summer_project.models import MyCustomUser, MyCustomUserManager
 from faker import Faker
+from summer_project.models import MyCustomUser, MyCustomUserManager, StudentInfo, TeacherInfo, Batch
 
 fakegen = Faker()
 
@@ -25,6 +25,47 @@ def populate_teachers(N=5):
                                                                , last_name=last_name)
         if new_teacher:
             print(new_teacher, " Created Successfully", "Entry:", entry)
+        else:
+            print("User Not Created for entry", entry)
+
+
+def createMultipleUsers(start, end, year, dept, semester):
+    department = None
+    if dept.find("ME") > -1 or dept.find("Mechanical") > -1:
+        department = "ME"
+        dept = "Mechanical"
+    elif dept.find("CE") > -1 or dept.find("Civil") > -1:
+        department = "CE"
+        dept = "Civil"
+    elif dept.find("EE") > -1 or dept.find("Electrical") > -1:
+        department = "EE"
+        dept = "Electrical"
+    elif dept.find("CSE") > -1 or dept.find("Computer") > -1:
+        department = "CO"
+        dept = "CSE"
+
+    year = year - 2000
+
+    for entry in range(start, end + 1):
+        first_name = None
+        last_name = None
+        if entry < 10:
+            username = "{dep}{year}30{entry}".format(dep=department, year=str(year), entry=str(entry))
+        else:
+            username = "{dep}{year}3{entry}".format(dep=department, year=str(year), entry=str(entry))
+        student_email = "{user}@gmail.com".format(user=username)
+        student_password = username
+        print(student_password)
+        new_student = MyCustomUser.objects.create_student_user(username=username,
+                                                               email=student_email, password=student_password,
+                                                               first_name=first_name
+                                                               , last_name=last_name)
+        batch = Batch.objects.get_or_create(batchYear=year)[0]
+        student_info = StudentInfo.objects.create(user=new_student, father_name=None, semester=semester, batch=batch,
+                                                  department=dept, roll_no=username, contact=None)
+        if new_student:
+            print(
+                "Created Successfully - Student {student} , Info {info}".format(student=new_student, info=student_info))
         else:
             print("User Not Created for entry", entry)
 
@@ -71,6 +112,7 @@ def populate_super_user(N):
 
 if __name__ == '__main__':
     print("POPULATING SCRIPT!!!!")
+    # createMultipleUsers(99,99,2018,"Electrical",1)
     nTeachers = int(input("Enter How many New Fake Teachers You want to create?"))
     nStudents = int(input("Enter How many New Fake Students You want to create?"))
     nUsers = int(input("Enter How many New SuperUser's You want to create?"))

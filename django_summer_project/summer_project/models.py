@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, PermissionsMixin
 from django.urls import reverse
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.core.validators import RegexValidator
@@ -25,11 +25,10 @@ class MyCustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password=None, **kwargs):
-        user = self.create_user(username, email, password=password,**kwargs)
+        user = self.create_user(username, email, password=password,first_name=None,last_name=None)
 
-        user.is_admin = True
-        user.is_staff = True
-        user.is_student = True
+        user.is_staff = True # Admin
+        user.is_superuser = True
 
         user.save(using=self._db)
 
@@ -43,12 +42,12 @@ class MyCustomUserManager(BaseUserManager):
 
     def create_teacher_user(self, username, email, password=None, **kwargs):
         user = self.create_user(username, email, password=password, **kwargs)
-        user.is_staff = True
+        user.is_teacher = True
         user.save(using=self._db)
         return user
 
 
-class MyCustomUser(AbstractBaseUser):
+class MyCustomUser(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=300,
                                 unique=True,
                                 validators=[RegexValidator(regex=USERNAME_REGEX,
@@ -64,10 +63,10 @@ class MyCustomUser(AbstractBaseUser):
                                  validators=[RegexValidator(regex=NAME_REGEX,
                                                             message="Last Name shouldn't contains Numbers, Special Characters etc.")])
 
-    is_admin = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
 
     objects = MyCustomUserManager()
 
@@ -151,12 +150,12 @@ class TeacherInfo(models.Model):
 
 class StudentInfo(models.Model):
     user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE)
-    father_name = models.CharField(max_length=30)
+    father_name = models.CharField(max_length=30,null=True)
     semester = models.CharField(max_length=10)
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
     department = models.CharField(max_length=30)
     roll_no = models.CharField(max_length=10)
-    contact = models.PositiveIntegerField()
+    contact = models.PositiveIntegerField(null=True)
     pic = models.ImageField(upload_to='profile_pic', blank=True)
 
     def __str__(self):

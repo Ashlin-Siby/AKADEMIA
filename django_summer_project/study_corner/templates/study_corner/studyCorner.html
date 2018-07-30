@@ -7,7 +7,7 @@
     </head>
     <h1>Welcome To Study Corner!!</h1>
     <div id="features_card_view_2">
-        {% if user.is_student %}
+        {% if user.is_student or user.is_staff %}
         <div class="card">
             <img src="{% static "images/notes.jpg " %}" class="card-img-top" alt="Notes">
             <div class="card-body">
@@ -29,7 +29,7 @@
                 <a href="{% url 'study_corner:sm_subjects' sm_pk='study_material' %}" class="btn btn-primary ">Let's Go</a>
             </div>
         </div>
-        {% elif user.is_staff %}
+        {% elif user.is_teacher and user.is_staff == False %}
         <div class="card">
             <img src="{% static "images/study_material.png" %}" class="card-img-top" alt="Study Material" >
             <div class="card-body ">

@@ -68,7 +68,7 @@ ROOT_URLCONF = 'django_summer_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [SUMMER_PROJECT_TEMPLATES_DIR],
+        'DIRS': [SUMMER_PROJECT_TEMPLATES_DIR,STUDY_CORNER_TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

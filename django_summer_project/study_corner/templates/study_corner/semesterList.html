@@ -6,7 +6,7 @@
 </head>
 <h2>Batch: {{year}} </h2>
 <ul class="list-group">
-    {% if user.is_student %}
+    {% if user.is_student or user.is_staff %}
     {% for entry in semester_list %}
     <a href="{% url 'study_corner:subjectslist' type_pk=type year_pk=year sem_pk=entry.semesterNo %}" class="list-group-item list-group-item-action">Semester: {{entry.semesterNo}}</a>
     {% endfor %}

@@ -37,11 +37,20 @@ class FileUploaderForm(forms.ModelForm):
         self.user = kwargs.pop('user')
         user = self.user
         # new_choices = []
-        if user.is_student and kwargs.pop('type_pk') != 'study_material':
+        if user.is_student and user.is_staff == False and kwargs.pop('type_pk') != 'study_material':
             new_choices = (('notes', 'Notes'), ('question_paper', 'Question Papers'))
 
-        elif user.is_staff:
+        elif user.is_teacher and user.is_staff == False:
             new_choices = (('study_material', 'Study Material'), ('question_paper', 'Question Papers'))
+
+        elif user.is_staff:
+            try:
+                type = kwargs.pop('type_pk')
+                print("Type: {t}".format(t=type))
+            except:
+                print("NO STUDY TYPE FOUND!!!")
+            new_choices = (
+            ('notes', 'Notes'), ('study_material', 'Study Material'), ('question_paper', 'Question Papers'))
 
         super().__init__(**kwargs)
         self.fields['fileType'].choices = new_choices
@@ -63,7 +72,7 @@ class ChangePasswordForm(forms.Form):
     confirmPassword = forms.CharField(label='Confirm Password',
                                       widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
-    def clean(self,**kwargs):
+    def clean(self, **kwargs):
         query = self.cleaned_data.get('username')
         password = self.cleaned_data.get('oldPassword')
         newPassword = self.cleaned_data.get('newPassword')

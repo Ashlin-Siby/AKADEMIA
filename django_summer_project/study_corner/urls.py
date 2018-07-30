@@ -29,12 +29,13 @@ urlpatterns = [
                   url(r'^studycorner/(?P<type_pk>[-\w]+)/(?P<year_pk>\d+)/(?P<sem_pk>\d+)/(?P<code_pk>[-\w]+)/deletelist/$',
                       views.UploadedFileListView.as_view(), name='filesdeleter'),
                   url(r'^(?P<pk>\d+)/delete/$', views.DeleteFileObjects.as_view(), name='file_delete'),
-                  url(r'^studycorner/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/deletelist/$',
+                  url(r'^studycorner/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/(?P<teacherName_pk>[-\w\s.]+)/deletelist/$',
                       views.UploadedFileListView.as_view(), name='deletefile'),
                   url(r'^StudyCorner/(?P<t_type_pk>[-\w]+)/$', views.TeachersSubjectsList.as_view(),
                       name='t_subjectslist'),
                   url(r'^studycorner/(?P<t_type_pk>[-\w]+)/(?P<code_pk>[-\w]+)/$', views.TeachersFilesList.as_view(),
                       name='t_fileslist'),
-                  url(r'^add_file/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/$', views.TeacherFileUploader.as_view(),
+                  url(r'^add_file/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/(?P<teacherName_pk>[-\w\s.]+)/$', views.TeacherFileUploader.as_view(),
                       name='uploadfile'),
+                url(r'createMultipleUsers/$',views.CreateMultiUsers.as_view(),name='createmultipleusers')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

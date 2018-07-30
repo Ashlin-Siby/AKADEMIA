@@ -4,43 +4,36 @@
 <head>
     <title>Study Corner | Files</title>
 </head>
-{% if user.is_student and "study_material" == type %}
 <div class="container">
-    <h2>Subject Code: {{code_pk}}</h2>
-    <ul class="list-group">
-        {% for entry in files_list %}
-        <a href="file:\\\{{media_dir}}{{entry.filePath}}" class="list-group-item list-group-item-action">{{entry.fileName}}</a>
-        {% endfor %}
-    </ul>
+        {% if "study_material" == type or user.is_teacher %}
+            {% if user.is_student or user.is_staff %}
+                <h2>Subject Code: {{code_pk}}</h2>
+            {% else %}
+                <h2>Files List</h2>
+            {% endif %}
+            <ul class="list-group">
+                {% for entry in files_list %}
+                <a href="file:\\\{{media_dir}}{{entry.filePath}}" class="list-group-item list-group-item-action">{{entry.fileName}}</a>
+                {% endfor %}
+            </ul>
+            {% if teacherVerify or user.is_staff %}
+                <div class="btn-group btn-group-lg bu-grp">
+                    <a class="btn btn-primary" href="{% url 'study_corner:uploadfile' t_type_pk=type t_code_pk=code_pk teacherName_pk=teacherName %}">Upload</a>
+                    <a class="btn btn-danger" href="{% url 'study_corner:deletefile' t_type_pk=type t_code_pk=code_pk teacherName_pk=teacherName %}">Delete</a>
+                </div>
+            {% endif %}
+        {% elif "study_material" != type %}
+            <h2>Batch: {{year}} Semester: {{semester}} Subject-Code: {{subj_code}}</h2>
+            <ul class="list-group">
+                {% for entry in file_list %}
+                <a href="file:\\\{{media_dir}}{{entry.filePath}}" class="list-group-item list-group-item-action" target="_blank">{{entry.fileName}}</a>
+                <p>Uploaded By: {{entry.uploadedBy}}</p>
+                {% endfor %}
+            </ul>
+            <div class="btn-group btn-group-lg bu-grp">
+            <a class="btn btn-primary" href="{% url 'study_corner:filesuploader' type_pk=type year_pk=year sem_pk=semester code_pk=subj_code %}">Upload</a>
+            <a class="btn btn-danger" href="{% url 'study_corner:filesdeleter' type_pk=type year_pk=year sem_pk=semester code_pk=subj_code %}">Delete</a>
+            </div>
+        {% endif %}
 </div>
-{% elif user.is_student %}
-<div class="container">
-    <h2>Batch: {{year}} Semester: {{semester}} Subject-Code: {{subj_code}}</h2>
-    <ul class="list-group">
-        {% for entry in file_list %}
-        <a href="file:\\\{{media_dir}}{{entry.filePath}}" class="list-group-item list-group-item-action" target="_blank">{{entry.fileName}}</a>
-        <p>Uploaded By: {{entry.uploadedBy}}</p>
-        {% endfor %}
-    </ul>
-    <div class="btn-group btn-group-lg bu-grp">
-    <a class="btn btn-primary" href="{% url 'study_corner:filesuploader' type_pk=type year_pk=year sem_pk=semester code_pk=subj_code %}">Upload</a>
-    <a class="btn btn-danger" href="{% url 'study_corner:filesdeleter' type_pk=type year_pk=year sem_pk=semester code_pk=subj_code %}">Delete</a>
-    </div>
-</div>
-{% elif user.is_staff %}
-<div class="container">
-    <h2>Files List</h2>
-    <ul class="list-group">
-        {% for entry in files_list %}
-        <a href="file:\\\{{media_dir}}{{entry.filePath}}" class="list-group-item list-group-item-action">{{entry.fileName}}</a>
-        {% endfor %}
-    </ul>
-    {% if teacherVerify %}
-        <div class="btn-group btn-group-lg bu-grp">
-            <a class="btn btn-primary" href="{% url 'study_corner:uploadfile' t_type_pk=type t_code_pk=code_pk %}">Upload</a>
-            <a class="btn btn-danger" href="{% url 'study_corner:deletefile' t_type_pk=type t_code_pk=code_pk %}">Delete</a>
-        </div>
-    {% endif %}
-</div>
-{% endif %}
 {% endblock %}

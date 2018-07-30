@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import CreateView, TemplateView, View, ListView, DeleteView, FormView
@@ -7,9 +8,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
+from populate_summer_project import createMultipleUsers
+from .forms import MultiUsersForms
 from summer_project.forms import UserCreationForm, FileUploaderForm
 from summer_project.models import MyCustomUser, StudentInfo, TeacherInfo, Batch, Semester, Subjects, Files
-from django import forms
+from faker import Faker
 from django.conf import settings
 
 
@@ -21,11 +24,11 @@ class StudyCornerView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
-        elif user.is_staff:
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
@@ -40,7 +43,7 @@ class BatchListView(LoginRequiredMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BatchListView, self).get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
@@ -62,16 +65,16 @@ class SemesterListView(LoginRequiredMixin, ListView):
         type = self.kwargs['type_pk']
         semester_list = Semester.objects.filter(batchYear=year_pk)
         user = self.request.user
-        if user.is_student:
+        data = {'semester_list': semester_list, 'year': year_pk, 'type': type}
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
-            return render(request, 'study_corner/semesterList.html',
-                          context={'semester_list': semester_list, 'year': year_pk, 'type': type,
-                                   'current_sem': studentUser.semester, 'studentUser': studentUser})
-        else:
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
-            return render(request, 'study_corner/semesterList.html',
-                          context={'semester_list': semester_list, 'year': year_pk, 'type': type,
-                                   'teacherUser': teacherUser})
+            data['teacherUser'] = teacherUser
+
+        return render(request, 'study_corner/semesterList.html', context=data)
 
 
 class SubjectsListView(LoginRequiredMixin, ListView):
@@ -86,18 +89,16 @@ class SubjectsListView(LoginRequiredMixin, ListView):
         type = self.kwargs['type_pk']
         semesterObject = Semester.objects.get(semesterNo=sem_pk, batchYear=year_pk)
         subject_list = Subjects.objects.filter(semesterNo=semesterObject)
-        # print(subject_list)
+        data = {'subject_list': subject_list, 'year': year_pk, 'semester': sem_pk, 'type': type}
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
-            return render(request, 'study_corner/subjectList.html',
-                          context={'subject_list': subject_list, 'year': year_pk, 'semester': sem_pk, 'type': type,
-                                   'current_sem': studentUser.semester, 'studentUser': studentUser})
-        else:
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
-            return render(request, 'study_corner/subjectList.html',
-                          context={'subject_list': subject_list, 'year': year_pk, 'semester': sem_pk, 'type': type,
-                                   'teacherUser': teacherUser})
+            data['teacherUser'] = teacherUser
+        return render(request, 'study_corner/subjectList.html', context=data)
 
 
 class SubjectsList(LoginRequiredMixin, ListView):
@@ -110,10 +111,12 @@ class SubjectsList(LoginRequiredMixin, ListView):
         type = self.kwargs['sm_pk']
         user = self.request.user
         subject_list = Subjects.objects.all().values_list('subjectName', 'subjectCode').distinct()
-        studentUser = StudentInfo.objects.get(user=user)
-        return render(request, 'study_corner/subjectList.html',
-                      context={'subjects_list': subject_list, 'type': type, 'current_sem': studentUser.semester,
-                               'studentUser': studentUser})
+        data = {'subjects_list': subject_list, 'type': type}
+        if user.is_student and user.is_teacher == False:
+            studentUser = StudentInfo.objects.get(user=user)
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        return render(request, 'study_corner/subjectList.html', context=data)
 
 
 class TeachersList(LoginRequiredMixin, ListView):
@@ -127,10 +130,12 @@ class TeachersList(LoginRequiredMixin, ListView):
         code = self.kwargs['code_pk']
         user = self.request.user
         teacher_list = Subjects.objects.filter(subjectCode=code).values_list('teacherName').distinct()
-        studentUser = StudentInfo.objects.get(user=user)
-        return render(request, 'study_corner/teacherList.html',
-                      context={'teacher_list': teacher_list, 'type': type, 'code': code,
-                               'current_sem': studentUser.semester, 'studentUser': studentUser})
+        data = {'teacher_list': teacher_list, 'type': type, 'code': code}
+        if user.is_student and user.is_teacher == False:
+            studentUser = StudentInfo.objects.get(user=user)
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        return render(request, 'study_corner/teacherList.html', context=data)
 
 
 class FilesList(LoginRequiredMixin, ListView):
@@ -146,10 +151,13 @@ class FilesList(LoginRequiredMixin, ListView):
         user = self.request.user
         subjectObjects = Subjects.objects.filter(teacherName=teacher_name, subjectCode=code)
         fileObjects = Files.objects.filter(teacherName__in=subjectObjects, fileType=type)
-        studentUser = StudentInfo.objects.get(user=user)
-        return render(request, 'study_corner/fileList.html',
-                      context={'files_list': fileObjects, 'type': type, 'code_pk': code,
-                               'current_sem': studentUser.semester, 'studentUser': studentUser})
+        print(fileObjects)
+        data = {'files_list': fileObjects, 'type': type, 'code_pk': code, 'teacherName': teacher_name}
+        if user.is_student and user.is_teacher == False:
+            studentUser = StudentInfo.objects.get(user=user)
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        return render(request, 'study_corner/fileList.html', context=data)
 
 
 class FilesListView(LoginRequiredMixin, ListView):
@@ -168,17 +176,16 @@ class FilesListView(LoginRequiredMixin, ListView):
         files_list = Files.objects.filter(subjCode=subjectObject, fileType=type)
         user = self.request.user
         MEDIA_DIR = settings.MEDIA_ROOT + '/'
-        if user.is_student:
+        data = {'file_list': files_list, 'year': year_pk, 'semester': sem_pk, 'subj_code': code_pk, 'type': type,
+                'media_dir': MEDIA_DIR}
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
-            return render(request, 'study_corner/fileList.html',
-                          context={'file_list': files_list, 'year': year_pk, 'semester': sem_pk, 'subj_code': code_pk,
-                                   'current_sem': studentUser.semester, 'type': type, 'media_dir': MEDIA_DIR,
-                                   'studentUser': studentUser})
-        else:
+            data['current_sem'] = studentUser.semester
+            data['studentUser'] = studentUser
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
-            return render(request, 'study_corner/fileList.html',
-                          context={'file_list': files_list, 'year': year_pk, 'semester': sem_pk, 'subj_code': code_pk,
-                                   'type': type, 'media_dir': MEDIA_DIR, 'teacherUser': teacherUser})
+            data['teacherUser'] = teacherUser
+        return render(request, 'study_corner/fileList.html', context=data)
 
 
 class TeachersSubjectsList(LoginRequiredMixin, ListView):
@@ -191,8 +198,9 @@ class TeachersSubjectsList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['type'] = self.kwargs['t_type_pk']
         user = self.request.user
-        teacherUser = TeacherInfo.objects.get(user=user)
-        context['teacherUser'] = teacherUser
+        if user.is_teacher and user.is_staff == False:
+            teacherUser = TeacherInfo.objects.get(user=user)
+            context['teacherUser'] = teacherUser
         return context
 
     def get_queryset(self):
@@ -210,14 +218,17 @@ class TeachersFilesList(LoginRequiredMixin, ListView):
         context['type'] = self.kwargs['t_type_pk']
         context['code_pk'] = self.kwargs['code_pk']
         user = self.request.user
-        teacherUser = TeacherInfo.objects.get(user=user)
-        context['teacherUser'] = teacherUser
-        teacherVerify = Subjects.objects.filter(subjectCode=self.kwargs['code_pk'],
-                                                teacherName__contains=self.request.user.first_name)
-        if teacherVerify:
-            context['teacherVerify'] = True
-        else:
-            context['teacherVerify'] = False
+        if user.is_teacher and user.is_staff == False:
+            teacherUser = TeacherInfo.objects.get(user=user)
+            context['teacherUser'] = teacherUser
+            context['teacherName'] = user.first_name + ' ' + user.last_name
+            teacherVerify = Subjects.objects.filter(subjectCode=self.kwargs['code_pk'],
+                                                    teacherName__contains=self.request.user.first_name)
+            if teacherVerify or user.is_staff:
+                context['teacherVerify'] = True
+            else:
+                context['teacherVerify'] = False
+            print(context['teacherVerify'])
         return context
 
     def get_queryset(self):
@@ -237,8 +248,9 @@ class TeacherFileUploader(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['type'] = self.kwargs['t_type_pk']
         context['code_pk'] = self.kwargs['t_code_pk']
-        teacherUser = TeacherInfo.objects.get(user=user)
-        context['teacherUser'] = teacherUser
+        if user.is_teacher and user.is_staff == False:
+            teacherUser = TeacherInfo.objects.get(user=user)
+            context['teacherUser'] = teacherUser
         return context
 
     def get_form_kwargs(self):
@@ -249,7 +261,10 @@ class TeacherFileUploader(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         Subject_Code = self.kwargs['t_code_pk']
         user = self.request.user
-        Teacher_Name = user.first_name + " " + user.last_name
+        if user.is_teacher:
+            Teacher_Name = user.first_name + " " + user.last_name
+        else:
+            Teacher_Name = self.kwargs['teacherName_pk']
         object = Subjects.objects.filter(subjectCode=Subject_Code, teacherName__contains=Teacher_Name)
         file_uploaded = Files(
             filePath=self.get_form_kwargs().get('files')['filePath'],
@@ -282,9 +297,10 @@ class StudentFileUploader(LoginRequiredMixin, CreateView):
         context['code_pk'] = self.kwargs['code_pk']
         context['type'] = self.kwargs['type_pk']
         user = self.request.user
-        studentUser = StudentInfo.objects.get(user=user)
-        context['current_sem'] = studentUser.semester
-        context['studentUser'] = studentUser
+        if user.is_student and user.is_teacher == False:
+            studentUser = StudentInfo.objects.get(user=user)
+            context['current_sem'] = studentUser.semester
+            context['studentUser'] = studentUser
         return context
 
     def get_form_kwargs(self):
@@ -323,7 +339,8 @@ class UploadedFileListView(LoginRequiredMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if (self.request.user.is_student):
+        # print(user.is_student,user.is_teacher)
+        if user.is_student:
             context['year_pk'] = self.kwargs['year_pk']
             context['sem_pk'] = self.kwargs['sem_pk']
             context['code_pk'] = self.kwargs['code_pk']
@@ -331,33 +348,52 @@ class UploadedFileListView(LoginRequiredMixin, ListView):
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
-        elif self.request.user.is_staff:
+        elif user.is_teacher:
             context['code_pk'] = self.kwargs['t_code_pk']
             context['type'] = self.kwargs['t_type_pk']
             teacherUser = TeacherInfo.objects.get(user=user)
-            context['teacherUser_pk'] = teacherUser.pk
+            context['teacherUser'] = teacherUser
         return context
 
     def get_queryset(self):
-        if (self.request.user.is_student):
-            batch_object = Batch.objects.filter(batchYear=self.kwargs['year_pk'])
-            semester_object = Semester.objects.filter(semesterNo=self.kwargs['sem_pk'], batchYear=batch_object[0])
-            object = Subjects.objects.filter(subjectCode=self.kwargs['code_pk'], semesterNo=semester_object[0])
-            file_objects = Files.objects.filter(uploadedBy=self.request.user, fileType=self.kwargs['type_pk'],
-                                                teacherName=object[0], subjCode=object[0])
-            return file_objects
-
-        elif self.request.user.is_staff:
-            Subject_Code = self.kwargs['t_code_pk']
-            user = self.request.user
-            Teacher_Name = user.first_name + " " + user.last_name
-            object = Subjects.objects.filter(subjectCode=Subject_Code, teacherName__contains=Teacher_Name)
-            if object:
-                file_objects = Files.objects.filter(uploadedBy=user, fileType=self.kwargs['t_type_pk'],
-                                                    teacherName=object[0], subjCode=object[0])
-            else:
-                file_objects = None
-            return file_objects
+        user = self.request.user
+        adminUsers = MyCustomUser.objects.filter(is_staff=True)
+        type = None
+        try:
+            type = self.kwargs['type_pk']
+        except:
+            type = self.kwargs['t_type_pk']
+        else:
+            print(type)
+        finally:
+            print(type)
+            if type == 'notes' or type == 'question_paper':
+                batch_object = Batch.objects.filter(batchYear=self.kwargs['year_pk'])
+                semester_object = Semester.objects.filter(semesterNo=self.kwargs['sem_pk'],
+                                                          batchYear=batch_object[0])
+                object = Subjects.objects.filter(subjectCode=self.kwargs['code_pk'], semesterNo=semester_object[0])
+                if user.is_staff == False:
+                    file_objects = Files.objects.filter((Q(uploadedBy=user) | Q(uploadedBy__in=adminUsers)), fileType=type,
+                                                        teacherName=object[0], subjCode=object[0])
+                else:
+                    file_objects = Files.objects.filter(fileType=type,teacherName=object[0], subjCode=object[0])
+                return file_objects
+            elif type == 'study_material':
+                Subject_Code = self.kwargs['t_code_pk']
+                if user.is_teacher:
+                    Teacher_Name = user.first_name + " " + user.last_name
+                else:
+                    Teacher_Name = self.kwargs['teacherName_pk']
+                object = Subjects.objects.filter(subjectCode=Subject_Code, teacherName__contains=Teacher_Name)
+                if object:
+                    if user.is_staff:
+                        file_objects = Files.objects.filter(fileType=type, teacherName=object[0], subjCode=object[0])
+                    else:
+                        file_objects = Files.objects.filter((Q(uploadedBy=user) | Q(uploadedBy__in=adminUsers)),
+                                                            fileType=type, teacherName=object[0], subjCode=object[0])
+                else:
+                    file_objects = None
+                return file_objects
 
 
 class DeleteFileObjects(LoginRequiredMixin, DeleteView):
@@ -370,11 +406,36 @@ class DeleteFileObjects(LoginRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
         user = self.request.user
-        if user.is_student:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
-        elif user.is_staff:
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
+
+
+class CreateMultiUsers(LoginRequiredMixin, FormView):
+    login_url = 'login'
+    redirect_field_name = 'summer_project:dashboard'
+    form_class = MultiUsersForms
+    success_url = reverse_lazy('summer_project:dashboard')
+    template_name = 'study_corner/MultipleUsersForm.html'
+
+    def form_valid(self, form):
+        start = form.cleaned_data.get('start')
+        end = form.cleaned_data.get('end')
+        department = form.cleaned_data.get('department')
+        year = form.cleaned_data.get('year')
+        semester = form.cleaned_data.get('semester')
+        try:
+            createMultipleUsers(start=start, end=end, year=year, dept=department, semester=semester)
+            print("Users Created")
+            return HttpResponseRedirect(self.get_success_url())
+        except:
+            print("Error in creating users!!")
+            raise ValidationError("Incorrect Details!!")
+
+    def get_success_url(self):
+        return reverse('summer_project:dashboard')
