@@ -1,6 +1,3 @@
-# Ignore .idea files
-.idea
-.idea
-
-# Ignore VSC generated files
-.vscode
+*.pyc
+*.iml
+*.xml
