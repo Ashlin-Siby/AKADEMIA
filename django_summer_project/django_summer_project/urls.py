@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^logout/',views.logout_view,name='logout'),
     path('admin/', admin.site.urls),
     url(r'^akademia/', include('summer_project.urls')),
-    url(r'^study_corner/', include('study_corner.urls')),
+    url(r'^akademia/study/', include('study_corner.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

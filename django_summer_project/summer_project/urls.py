@@ -15,6 +15,6 @@ urlpatterns = [
                   url(r'^teacher/edit/(?P<pk>\d+)/$', views.TeacherProfileEdit.as_view(), name='teachprofileedit'),
                   url(r'^teacher/(?P<pk>\d+)/$', views.TeachProfileView.as_view(), name='teachprofile'),
                   # url(r'^password/$', views.change_password, name='adminDjangoDashboard'),
-                  url(r'^changePassword/(?P<pk>\d+)/$', views.ChangePasswordView.as_view(), name='changepassword')
+                  url(r'^changePassword/(?P<pk>\d+)/$', views.ChangePasswordView.as_view(), name='changepassword'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
