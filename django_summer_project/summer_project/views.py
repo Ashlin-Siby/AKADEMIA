@@ -27,27 +27,14 @@ class index(View):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user:
-            print("Authentication Successful")
             login(request, user)
-            if user.is_staff:
-                print("Admin Login Successful")
-                return render(request, 'summer_project/dashboard.html')
-            elif user.is_student :
-                studentUser = StudentInfo.objects.get(user=user)
-                profile_data = {'current_sem': studentUser.semester, 'studentUser': studentUser}
-                return render(request, 'summer_project/dashboard.html', context=profile_data)
-            elif user.is_teacher and user.is_staff==False:
-                print("Teacher Login Successful")
-                teacherUser = TeacherInfo.objects.get(user=user)
-                return render(request, 'summer_project/dashboard.html', context={'teacherUser': teacherUser})
+            return HttpResponseRedirect(reverse('summer_project:dashboard'))
 
         else:
             if MyCustomUser.objects.get(username=username):
                 raise ValidationError("Entered Wrong Passowrd. User Authentication failed!!")
-                return render(request, 'summer_project/login.html', {'msg': "Invalid Login Credentials!!."})
             else:
                 raise ValidationError("User Doesn't Exist!!! Contact Administrator.")
-                return render(request, 'summer_project/login.html', {'msg': "Invalid User!!! Contact Administrator."})
 
 
 class Dashboard(LoginRequiredMixin, TemplateView):
@@ -58,11 +45,11 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student and user.is_staff==False:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
-        elif user.is_teacher and user.is_staff==False:
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
@@ -85,7 +72,7 @@ class StudProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student and user.is_staff==False:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['media_dir'] = settings.MEDIA_ROOT
             context['current_sem'] = studentUser.semester
@@ -114,14 +101,14 @@ class StudentProfileEdit(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     redirect_field_name = 'summer_project/dashboard.html'
     model = StudentInfo
-    fields = ("pic", "father_name", "department", "contact")
+    fields = ("father_name", "department", "contact", "pic",)
     template_name = 'summer_project/student_profile_edit.html'
     success_url = reverse_lazy('summer_project:dashboard')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student and user.is_staff==False:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['media_dir'] = settings.MEDIA_ROOT
             context['current_sem'] = studentUser.semester
@@ -133,9 +120,10 @@ class TeacherProfileEdit(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     redirect_field_name = 'summer_project/dashboard.html'
     model = TeacherInfo
-    fields = (
-        "pic", "designation", "education_qualification", "specialization_area", "department", "add_role", "web_link",
-        "web_link")
+    fields = ("designation", "education_qualification", "specialization_area",
+              "department",
+              "add_role", "web_link",
+              "web_link", "pic")
     template_name = 'summer_project/teacher_profile_edit.html'
     success_url = reverse_lazy('summer_project:dashboard')
 
@@ -169,10 +157,10 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        if user.is_student and user.is_staff==False:
+        if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
             context['studentUser'] = studentUser
-        elif user.is_teacher and user.is_staff==False:
+        elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
         return context
