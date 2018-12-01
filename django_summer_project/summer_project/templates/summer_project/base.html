@@ -41,10 +41,10 @@
                 <p href="#study_corner" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {% if user.is_student and studentUser.pic %}
-                        <img alt="User Pic" src="../..{{ studentUser.pic.url }}" width="30px" height="30px" class="d-inline-block
+                        <img alt="User Pic" src="{{ studentUser.pic.url }}" width="30px" height="30px" class="d-inline-block
                     align-top" style="border-radius: 50%">
                     {% elif user.is_teacher and teacherUser.pic %}
-                        <img alt="User Pic" src="../..{{ teacherUser.pic.url }}" width="30px" height="30px" class="d-inline-block
+                        <img alt="User Pic" src="{{ teacherUser.pic.url }}" width="30px" height="30px" class="d-inline-block
                     align-top" style="border-radius: 50%">
                     {% else %}
                     <img src="{% static "images/student_128.png" %}" width="30px" height="30px" class="d-inline-block
@@ -70,13 +70,14 @@
     {% if user.is_staff == False %}
         <div class="container" id="menuContent">
             {% if user.is_student and studentUser.pic %}
-                <img alt="User Pic" src="../..{{ studentUser.pic.url }}" width="70%" height="20%" class="d-inline-block
+                <img alt="User Pic" src="{{ studentUser.pic.url }}" width="151px" height="180px"
+                     class="d-inline-block
                     align-top" style="border-radius: 50%">
             {% elif user.is_teacher and teacherUser.pic %}
-                <img alt="User Pic" src="../..{{ teacherUser.pic.url }}" width="70%" height="20%" class="d-inline-block
+                <img alt="User Pic" src="{{ teacherUser.pic.url }}" width="151px" height="180px" class="d-inline-block
                     align-top" style="border-radius: 50%">
             {% else %}
-                <img src="{% static "images/student_128.png" %}" width="30px" height="30px" class="d-inline-block
+                <img src="{% static "images/student_128.png" %}" width="70%" height="20%" class="d-inline-block
                     align-top" style="border-radius: 50%">
             {% endif %}
             <h2>
@@ -89,8 +90,16 @@
             {% if user.is_student %}
             <hr>
             <h2>Semester-{{current_sem}}
-            <sup>th</sup></h2>
-            {% endif %}
+                {% if current_sem == '1' %}
+                    <sup>st</sup></h2>
+                {% elif current_sem == '2' %}
+                    <sup>nd</sup></h2>
+                {% elif current_sem == '3' %}
+                    <sup>rd</sup></h2>
+                {% else %}
+                    <sup>th</sup></h2>
+                {% endif %}
+            {%endif%}
         </div>
     {% endif %}
         <div class="container" id="mainContent">

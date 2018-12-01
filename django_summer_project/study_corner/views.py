@@ -60,21 +60,22 @@ class SemesterListView(LoginRequiredMixin, ListView):
     model = Semester
     template_name = 'study_corner/semesterList.html'
 
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
         year_pk = self.kwargs['year_pk']
         type = self.kwargs['type_pk']
         semester_list = Semester.objects.filter(batchYear=year_pk)
         user = self.request.user
-        data = {'semester_list': semester_list, 'year': year_pk, 'type': type}
+        context = {'semester_list': semester_list, 'year': year_pk, 'type': type}
         if user.is_student and user.is_staff == False:
             studentUser = StudentInfo.objects.get(user=user)
-            data['current_sem'] = studentUser.semester
-            data['studentUser'] = studentUser
+            context['current_sem'] = studentUser.semester
+            context['studentUser'] = studentUser
         elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
-            data['teacherUser'] = teacherUser
+            context['teacherUser'] = teacherUser
 
-        return render(request, 'study_corner/semesterList.html', context=data)
+        return context
 
 
 class SubjectsListView(LoginRequiredMixin, ListView):
@@ -83,7 +84,8 @@ class SubjectsListView(LoginRequiredMixin, ListView):
     model = Subjects
     template_name = 'study_corner/subjectList.html'
 
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
+        data = super().get_context_data(**kwargs)
         year_pk = self.kwargs['year_pk']
         sem_pk = self.kwargs['sem_pk']
         type = self.kwargs['type_pk']
@@ -98,7 +100,7 @@ class SubjectsListView(LoginRequiredMixin, ListView):
         elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             data['teacherUser'] = teacherUser
-        return render(request, 'study_corner/subjectList.html', context=data)
+        return data
 
 
 class SubjectsList(LoginRequiredMixin, ListView):
