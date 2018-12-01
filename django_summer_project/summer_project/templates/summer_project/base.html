@@ -79,7 +79,13 @@
                 <img src="{% static "images/student_128.png" %}" width="30px" height="30px" class="d-inline-block
                     align-top" style="border-radius: 50%">
             {% endif %}
-            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <h2>
+                {% if user.first_name %}
+                    {{user.first_name}} {{user.last_name}}
+                {% else %}
+                    {{user}}
+                {% endif %}
+            </h2>
             {% if user.is_student %}
             <hr>
             <h2>Semester-{{current_sem}}

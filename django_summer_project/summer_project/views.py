@@ -123,6 +123,7 @@ class StudentProfileEdit(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user.is_student and user.is_staff==False:
             studentUser = StudentInfo.objects.get(user=user)
+            context['media_dir'] = settings.MEDIA_ROOT
             context['current_sem'] = studentUser.semester
             context['studentUser'] = studentUser
         return context
@@ -141,6 +142,7 @@ class TeacherProfileEdit(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
+        context['media_dir'] = settings.MEDIA_ROOT
         if user.is_teacher:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
