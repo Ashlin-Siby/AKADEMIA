@@ -4,11 +4,36 @@
 <head>
     <title>Study Corner | Uploaded Files</title>
 </head>
-<h2>Uploaded Files</h2>
-<p><strong>(Click on the file to delete it!!!)</strong></p>
-<ul class="list-group">
-        {% for entry in files_list %}
-            <a href="{% url 'study_corner:file_delete' pk=entry.pk %}" class="list-group-item list-group-item-action">{{entry.fileName}}</a>
-        {% endfor %}
-</ul>
+
+<section id="main-content">
+     <section class="wrapper">
+       <div class="row">
+         <div class="col-lg-9 main-chart">
+           <!--CUSTOM CHART START -->
+           <div class="border-head">
+             <h2>Uploaded Files</h2>
+             <p><strong>(Click on the file to delete it!!!)</strong></p>
+           </div>
+
+           <!--custom chart end-->
+           <div class="row mt">
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+               <ul class="list-group">
+                       {% for entry in files_list %}
+                           <a href="{% url 'study_corner:file_delete' pk=entry.pk %}" class="list-group-item list-group-item-action">{{entry.fileName}}</a>
+                       {% endfor %}
+               </ul>
+
+
+
+              </div>
+            </div>
+                     </div>
+                     <!-- /col-lg-3 -->
+                   </div>
+                   <!-- /row -->
+                 </section>
+                </section>
+
 {% endblock%}

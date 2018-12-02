@@ -1,112 +1,191 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/dashboard_student_style.css" %}" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>AKADEMIA | CCET</title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <!-- Favicons -->
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "lib/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!--external css-->
+  <link href="{% static "lib/font-awesome/css/font-awesome.css"  %}" rel="stylesheet" "/>
+  <link rel="stylesheet" type="text/css" href="{% static "css/zabuto_calendar.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "lib/gritter/css/jquery.gritter.css"  %}"/>
+  <!-- Custom styles for this template -->
+  <link href="{% static "css/style.css" %}" rel="stylesheet">
+  <link href="{% static "css/style-responsive.css" %}" rel="stylesheet">
+  <script src="{% static "lib/chart-master/Chart.js" %}"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <script src="{% static 'js/pageController.js' %}"></script>
+
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <a href="{% url 'summer_project:dashboard' %}" class="navbar-brand">Dashboard</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a href="{% url 'study_corner:studyCorner' %}" class="nav-link">Study Corner</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'calEvents:index' %}" class="nav-link">Calendar</a>
-            </li>
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="{% url 'summer_project:dashboard' %}" class="logo"><b>AKADE<span>MIA</span></b></a>
+      <!--logo end-->
+
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu"
+        >
+          <li><a class="logout" href="{% url 'logout' %}">Logout</a></li>
         </ul>
-        <ul class="navbar-nav" style="float: right;">
-            <li class="nav-item dropdown">
-                <p href="#study_corner" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {% if user.is_student and studentUser.pic %}
-                        <img alt="User Pic" src="{{ studentUser.pic.url }}" width="30px" height="30px" class="d-inline-block
-                    align-top" style="border-radius: 50%">
-                    {% elif user.is_teacher and teacherUser.pic %}
-                        <img alt="User Pic" src="{{ teacherUser.pic.url }}" width="30px" height="30px" class="d-inline-block
-                    align-top" style="border-radius: 50%">
-                    {% else %}
-                    <img src="{% static "images/student_128.png" %}" width="30px" height="30px" class="d-inline-block
-                    align-top" style="border-radius: 50%">
-                    {% endif %}
-                    {{user.username}} {{user.first_name}}</p>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    {% if user.is_staff == False %}
-                    {% if user.is_student %}
-                        <a class="dropdown-item" href="{% url 'summer_project:studprofile' pk=studentUser.pk%}">Profile</a>
-                    {% elif user.is_teacher %}
-                        <a class="dropdown-item" href="{% url 'summer_project:teachprofile' pk=teacherUser.pk%}">Profile</a>
-                    {% endif %}
-                    {% endif %}
-                    <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
-                </div>
-            </li>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+    {% if user.is_staff == False %}
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+            {% if user.is_student and studentUser.pic %}
+                <a href="{% url 'summer_project:studprofile' pk=studentUser.pk%}">
+                <img alt="User Pic" src="{{ studentUser.pic.url }}"  class="img-circle" width="80">
+            {% elif user.is_teacher and teacherUser.pic %}
+                <a href="{% url 'summer_project:teachprofile' pk=teacherUser.pk%}">
+                <img alt="User Pic" src="{{ teacherUser.pic.url }}" class="img-circle" width="80">
+            {% else %}
+                {% if user.is_student %}
+                  <a href="{% url 'summer_project:studprofile' pk=studentUser.pk%}">
+                {% elif user.is_teacher %}
+                  <a href="{% url 'summer_project:teachprofile' pk=teacherUser.pk%}">
+                {% endif %}
+                <img src="{% static "images/student_128.png" %}"  class="img-circle" width="80">
+            {% endif %}
+          </a></p>
+          <h5 class="centered">
+          {% if user.first_name %}
+            {{user.first_name}} {{user.last_name}}
+          {% else %}
+            {{user}}
+          {% endif %}
+        </h5>
+          <li class="mt">
+            <a class="active" href="{% url 'summer_project:dashboard' %}">
+              <i class="fa fa-dashboard"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Study Corner</span>
+              </a>
+            {% if user.is_student %}
+             <ul class="sub">
+              <li><a href="{% url 'study_corner:batchlist' type_pk='notes' %}">Notes</a></li>
+              <li><a href="{% url 'study_corner:batchlist' type_pk='question_paper' %}">Question Paper</a></li>
+              <li><a href="{% url 'study_corner:sm_subjects' sm_pk='study_material' %}">Study Material</a></li>
+             </ul>
+            {% elif user.is_teacher %}
+             <ul class="sub">
+              <li><a href="{% url 'study_corner:t_subjectslist' t_type_pk='question_paper' %}">Question Paper</a></li>
+              <li><a href="{% url 'study_corner:t_subjectslist' t_type_pk='study_material' %}">Study Material</a></li>
+             </ul>
+            {% endif %}
+          </li>
+          <li class="sub-menu">
+            <a href="{% url 'calEvents:index' %}">
+              <i class="fa fa-cogs"></i>
+              <span>Calander</span>
+              </a>
+          </li>
 
         </ul>
-    </div>
-</nav>
-<span id="mainBody">
-    {% if user.is_staff == False %}
-        <div class="container" id="menuContent">
-            {% if user.is_student and studentUser.pic %}
-                <img alt="User Pic" src="{{ studentUser.pic.url }}" width="151px" height="180px"
-                     class="d-inline-block
-                    align-top" style="border-radius: 50%">
-            {% elif user.is_teacher and teacherUser.pic %}
-                <img alt="User Pic" src="{{ teacherUser.pic.url }}" width="151px" height="180px" class="d-inline-block
-                    align-top" style="border-radius: 50%">
-            {% else %}
-                <img src="{% static "images/student_128.png" %}" width="70%" height="20%" class="d-inline-block
-                    align-top" style="border-radius: 50%">
-            {% endif %}
-            <h2>
-                {% if user.first_name %}
-                    {{user.first_name}} {{user.last_name}}
-                {% else %}
-                    {{user}}
-                {% endif %}
-            </h2>
-            {% if user.is_student %}
-            <hr>
-            <h2>Semester-{{current_sem}}
-                {% if current_sem == '1' %}
-                    <sup>st</sup></h2>
-                {% elif current_sem == '2' %}
-                    <sup>nd</sup></h2>
-                {% elif current_sem == '3' %}
-                    <sup>rd</sup></h2>
-                {% else %}
-                    <sup>th</sup></h2>
-                {% endif %}
-            {%endif%}
-        </div>
+        <!-- sidebar menu end-->
+      </div>
     {% endif %}
-        <div class="container" id="mainContent">
-           {% block mainblock %}
-           {% endblock %}
-        </div>
-    </span>
+    </aside>
+
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+
+       {% block mainblock %}
+       {% endblock %}
+
+    <!--main content end-->
+    <!--footer start-->
+
+    <!--footer end-->
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="{% static "lib/jquery/jquery.min.js" %}" ></script>
+
+  <script src="{% static "lib/bootstrap/js/bootstrap.min.js" %}" ></script>
+  <script class="include" type="text/javascript" src="{% static "lib/jquery.dcjqaccordion.2.7.js" %}" ></script>
+  <script src="{% static "lib/jquery.scrollTo.min.js" %}" ></script>
+  <script src="{% static "lib/jquery.nicescroll.js" %}"  type="text/javascript"></script>
+  <script src="{% static "lib/jquery.sparkline.js" %}" ></script>
+  <!--common script for all pages-->
+  <script src="{% static "lib/common-scripts.js" %}" ></script>
+  <script type="text/javascript" src="{% static "lib/gritter/js/jquery.gritter.js" %}" ></script>
+  <script type="text/javascript" src="{% static "lib/gritter-conf.js" %}" ></script>
+  <!--script for this page-->
+  <script src="{% static "lib/sparkline-chart.js" %}" ></script>
+  <script src="{% static "lib/zabuto_calendar.js" %}" ></script>
+  <script type="application/javascript">
+    $(document).ready(function() {
+      $("#date-popover").popover({
+        html: true,
+        trigger: "manual"
+      });
+      $("#date-popover").hide();
+      $("#date-popover").click(function(e) {
+        $(this).hide();
+      });
+
+      $("#my-calendar").zabuto_calendar({
+        action: function() {
+          return myDateFunction(this.id, false);
+        },
+        action_nav: function() {
+          return myNavFunction(this.id);
+        },
+        ajax: {
+          url: "show_data.php?action=1",
+          modal: true
+        },
+        legend: [{
+            type: "text",
+            label: "Special event",
+            badge: "00"
+          },
+          {
+            type: "block",
+            label: "Regular event",
+          }
+        ]
+      });
+    });
+
+    function myNavFunction(id) {
+      $("#date-popover").hide();
+      var nav = $("#" + id).data("navigation");
+      var to = $("#" + id).data("to");
+      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+    }
+  </script>
 </body>
 
 </html>

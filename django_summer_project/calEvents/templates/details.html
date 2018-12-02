@@ -1,0 +1,16 @@
+{% extends 'events_base.html' %}
+
+
+{% block content %}
+
+<div id="eventsDetails" class="container jumbotron " style="display: flex; justify-content: center; align-items: center;">
+
+
+  <div style="width: 48%;"><p class="detailsEntryName" style="text-align: left;">{{ entry.name }}</p></div>
+  <div style="width: 48%;"><p class="detailsEntryDate" style="text-align: right;">{{ entry.date}}</p></div>
+  <!-- <h5>{{ entry.date }}</h5> -->
+  <div style="width: 100%;"><p class="detailsEntryDescription">{{ entry.description }}</p></div>
+  <div style="margin-top: 30px; width: 100%;"><button style="float: right;" onclick="window.location='{% url 'calEvents:index' %}'" class="btn btn-default">Go Back</button>
+</div>
+
+{% endblock %}

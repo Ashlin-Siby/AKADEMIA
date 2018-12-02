@@ -97,13 +97,6 @@ class MyCustomUser(AbstractBaseUser,PermissionsMixin):
         return reverse('index')
 
 
-class EventsInfo(models.Model):
-    date = models.DateField(auto_now=True)
-    description = models.TextField(max_length=150)
-    referenceLink = models.URLField()
-    type = models.TextField(max_length=20)
-
-
 class Batch(models.Model):
     batchYear = models.PositiveSmallIntegerField(primary_key=True)
 

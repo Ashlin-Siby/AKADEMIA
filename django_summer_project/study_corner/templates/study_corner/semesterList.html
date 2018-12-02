@@ -4,12 +4,37 @@
 <head>
     <title>Study Corner | Semester(s)</title>
 </head>
-<h2>Batch: {{year}} </h2>
-<ul class="list-group">
-    {% if user.is_student or user.is_staff %}
-    {% for entry in semester_list %}
-    <a href="{% url 'study_corner:subjectslist' type_pk=type year_pk=year sem_pk=entry.semesterNo %}" class="list-group-item list-group-item-action">Semester: {{entry.semesterNo}}</a>
-    {% endfor %}
-    {% endif %}
-</ul>
+
+<section id="main-content">
+     <section class="wrapper">
+       <div class="row">
+         <div class="col-lg-9 main-chart">
+           <!--CUSTOM CHART START -->
+           <div class="border-head">
+              <h3>Batch: {{year}} </h3>
+           </div>
+
+           <!--custom chart end-->
+           <div class="row mt">
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+
+               <ul class="list-group">
+                   {% if user.is_student or user.is_staff %}
+                   {% for entry in semester_list %}
+                   <a href="{% url 'study_corner:subjectslist' type_pk=type year_pk=year sem_pk=entry.semesterNo %}" class="list-group-item list-group-item-action">Semester: {{entry.semesterNo}}</a>
+                   {% endfor %}
+                   {% endif %}
+               </ul>
+
+
+              </div>
+            </div>
+                     </div>
+                     <!-- /col-lg-3 -->
+                   </div>
+                   <!-- /row -->
+                 </section>
+                </section>
+
 {% endblock %}

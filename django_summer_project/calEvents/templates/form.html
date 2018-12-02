@@ -1,0 +1,26 @@
+{% extends 'events_base.html' %}
+{% block content %}
+<div class="container" style="text-align: left;">
+
+  <div class="row">
+    <div class="">
+      <h3>Add a New Entry!</h3>
+    </div>
+  </div>
+  <form method="POST">
+    <div class="form-group">
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field.errors }}
+        <label for="eventName">{{ field.label }}</label>
+        <input  id="eventName" placeholder="{{ field.label }}" name="{{ field.name }}" class="form-control" />
+      {% endfor %}
+    </div>
+    <button style="width: 100px;" type="submit" onclick="window.location='{% url 'calEvents:index' %}'" class="btn btn-primary">Submit</button>
+    <button style="width: 100px; float: right;" onclick="window.location='{% url 'calEvents:index' %}'" type="button" class="btn btn-success">Go Back</button>
+
+  </form>
+</div>
+
+
+{% endblock %}

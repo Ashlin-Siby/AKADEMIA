@@ -27,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^akademia/', include('summer_project.urls')),
     url(r'^akademia/study/', include('study_corner.urls')),
+    url(r'^akademia/calEvents/', include('calEvents.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

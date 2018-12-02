@@ -1,0 +1,43 @@
+{% extends 'events_base.html' %}
+
+{% block content %}
+
+
+
+<div class="calEventsMainBox" style="min-width: 375px;">
+  <div class="mainCalendarBox" style="min-width: 375px;">
+    <h1 style="color: #eee">Calendar</h1>
+    <div style="width: 100%; min-height: 500px; min-width: 375px;">
+      <!-- Calendar -->
+    	<div class="hello-week"style="margin: 0px; width: 100%; min-height: 500px;"></div>
+    	<!-- End Calendar -->
+    </div>
+  </div>
+
+  <div class="mainEventsBox" style="min-width: 375px;">
+    <h1 style="color: #eee">Events</h1>
+      {% if user.is_teacher %}
+      <button style="width: 100%; padding: 2px 5px; margin: 0; margin-top: 1px;" onclick="window.location='{% url 'calEvents:add' %}'" type="button" class="btn btn-success">Add Entry</button>
+      {% endif %}
+
+
+    <div class="eventsList" style="overflow-y: scroll; display: flex; flex-direction: column;  height: 500px; min-width: 375px; ">
+
+      <div class="row" style="width: 100%; height: 100%; margin: 0; background-color: #eee;">
+        <div class="eventsHeading" style="width: 100%; display: flex; flex-dire: row; justify-content: space-between; background-color: #eee; padding-left: 20px;">
+
+            <div style="width: 20%;">Title</div>
+            <div style="width: 60%;">Description</div>
+            <div style="width: 20%;">Date</div>
+
+        </div>
+        {% for entry in entries %}
+          {% include 'entry.html' %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}
