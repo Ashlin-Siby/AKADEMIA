@@ -1,13 +1,28 @@
-# Ideas
+# AKADEMIA
 
-## Users
+## Setup Instructions
+
+* Requirements: Pyhton, Anaconda3, Internet
+* Open command prompt in project folder and run following commands to setup project
+	* conda create --name DjangoEnv
+	* activate DjangoEnv
+	* pip install -r requirements.txt
+	* cd django_summer_project
+	* python manage.py makemigrations
+	* python manage.py migrate
+	* python manage.py runserver
+	* Open http://127.0.0.1:8000/
+
+## Ideas
+
+### Users
 
 * Student
 * Teacher
 * Moderator (Admin)
 
 
-## LogIn/Registration
+### LogIn/Registration
 
 * **Student**
   * Username (Roll No.)
@@ -23,7 +38,7 @@
 
 * **Moderator** (By Default - superuser)
 
-## Dashboard
+### Dashboard
 
 * **Student**
   * Navigation Bar
@@ -48,7 +63,7 @@
     * Welcome meassage
     * Features Card View
 
-## Profile (inherit dashboard template)
+### Profile (inherit dashboard template)
 
 * **Student**
   * Name
@@ -75,9 +90,9 @@
   * Website Link
   * Contact Number
 
-## Study Corner
+### Study Corner
   
-### Student Database
+#### Student Database
 
 * Notes -> Batch -> Semester -> Subjects -> Files
 * Question Paper -> Batch -> Semester -> Subjects -> Files
