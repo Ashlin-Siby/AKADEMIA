@@ -4,31 +4,59 @@
 <head>
     <title>Study Corner | Subjects</title>
 </head>
-{% if user.is_student or user.is_staff %}
-    {% if "study_material" == type %}
-        <h2>List of Subjects</h2>
-        <ul class="list-group">
-            {% for entry in subjects_list %}
-            <a href="{% url 'study_corner:teacherslist' sm_pk=type code_pk=entry.1 %}"
-               class="list-group-item list-group-item-action">{{entry.0}}</a>
-            {% endfor %}
-        </ul>
-    {% elif "study_material" != type %}
-        <h2>Batch: {{year}} Semester: {{semester}}</h2>
-        <ul class="list-group">
-            {% for entry in subject_list %}
-            <a href="{% url 'study_corner:fileslist' type_pk=type  year_pk=year sem_pk=entry.semesterNo.semesterNo code_pk=entry.subjectCode%}"
-               class="list-group-item list-group-item-action">{{entry.subjectName}}</a>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% elif user.is_teacher %}
-    <h2>Subjects List</h2>
-    <ul class="list-group">
-    {% for entry in subjects_list %}
-    <a href="{% url 'study_corner:t_fileslist' t_type_pk=type code_pk=entry.subjectCode%}"
-       class="list-group-item list-group-item-action">{{entry.subjectName}}</a>
-    {% endfor %}
-</ul>
+
+<section id="main-content">
+     <section class="wrapper">
+       <div class="row">
+         <div class="col-lg-9 main-chart">
+           <!--CUSTOM CHART START -->
+           <div class="border-head">
+             <h3>Subject List</h3>
+           </div>
+
+           <!--custom chart end-->
+           <div class="row mt" style="display: flex;
+    justify-content: space-around;">
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+
+               {% if user.is_student or user.is_staff %}
+                   {% if "study_material" == type %}
+                     
+                       <ul class="list-group">
+                           {% for entry in subjects_list %}
+                           <a href="{% url 'study_corner:teacherslist' sm_pk=type code_pk=entry.1 %}"
+                              class="list-group-item list-group-item-action">{{entry.0}}</a>
+                           {% endfor %}
+                       </ul>
+                   {% elif "study_material" != type %}
+                       <h2>Batch: {{year}} Semester: {{semester}}</h2>
+                       <ul class="list-group">
+                           {% for entry in subject_list %}
+                           <a href="{% url 'study_corner:fileslist' type_pk=type  year_pk=year sem_pk=entry.semesterNo.semesterNo code_pk=entry.subjectCode%}"
+                              class="list-group-item list-group-item-action">{{entry.subjectName}}</a>
+                           {% endfor %}
+                       </ul>
+                   {% endif %}
+               {% elif user.is_teacher %}
+                   <h2>Subjects List</h2>
+                   <ul class="list-group">
+                   {% for entry in subjects_list %}
+                   <a href="{% url 'study_corner:t_fileslist' t_type_pk=type code_pk=entry.subjectCode%}"
+                      class="list-group-item list-group-item-action">{{entry.subjectName}}</a>
+                   {% endfor %}
+               </ul>
+
+
+              </div>
+            </div>
+                     </div>
+                     <!-- /col-lg-3 -->
+                   </div>
+                   <!-- /row -->
+                 </section>
+                </section>
+
+
 {% endif %}
 {% endblock %}

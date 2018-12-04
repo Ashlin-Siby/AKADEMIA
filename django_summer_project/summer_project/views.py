@@ -8,12 +8,21 @@ from django.urls import reverse, reverse_lazy
 from .forms import UserCreationForm, ChangePasswordForm
 from .models import MyCustomUser, StudentInfo, TeacherInfo
 from django.conf import settings
+import datetime
 
 
 # Create your views here.
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
+# Get current month
+def getMonth():
+    today = str(datetime.date.today())
+    monthList = today.split('-')
+    month_int = int(monthList[1])
+    month = datetime.date(1900, month_int, 1).strftime('%B')
+    return month[:3]
 
 
 class index(View):
@@ -52,6 +61,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
         elif user.is_teacher and user.is_staff == False:
             teacherUser = TeacherInfo.objects.get(user=user)
             context['teacherUser'] = teacherUser
+        context['month'] = getMonth()
         return context
 
 

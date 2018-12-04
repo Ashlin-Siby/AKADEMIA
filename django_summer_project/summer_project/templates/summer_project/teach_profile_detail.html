@@ -1,16 +1,18 @@
 {% extends 'summer_project/base.html' %}
 {% load staticfiles %}
 {% block mainblock %}
+<div > <br> <br> <br> <br> <br></div>
 
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
 
-          <div class="panel panel-info" style="color:#fff">
+          <div class="panel panel-info" >
             <div class="panel-heading">
               <h3 class="panel-title">{{user.username}}</h3>
-            <div class="panel-body">
+              </div>
+            <div class="panel-body" >
               <br>  <div class="row">
                 <div class="col-md-6 col-lg-6 " align="center">
                   {%if teacher_details.pic%}

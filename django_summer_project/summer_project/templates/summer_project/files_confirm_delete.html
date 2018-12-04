@@ -4,11 +4,35 @@
 <head>
     <title>Study Corner | Confirm Delete</title>
 </head>
-<h2>Delete</h2>
-<form method="post">
-        {% csrf_token %}
-        <p>Are You Sure you Want to DELETE {{ object.fileName }}?</p>
-        <input type="submit" value="Delete" class="btn btn-danger">
-        <a type="button" class="btn btn-warning" onclick="goBack()">Cancel</a>
-    </form>
+<section id="main-content">
+     <section class="wrapper">
+       <div class="row">
+         <div class="col-lg-9 main-chart">
+           <!--CUSTOM CHART START -->
+           <div class="border-head">
+             <h3>Delete ?</h3>
+           </div>
+
+           <!--custom chart end-->
+           <div class="row mt">
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+
+               <form method="post">
+                       {% csrf_token %}
+                       <p>Are You Sure you Want to DELETE {{ object.fileName }}?</p>
+                       <input type="submit" value="Delete" class="btn btn-danger">
+                       <a type="button" class="btn btn-warning" onclick="goBack()">Cancel</a>
+                   </form>
+
+              </div>
+            </div>
+                     </div>
+                     <!-- /col-lg-3 -->
+                   </div>
+                   <!-- /row -->
+                 </section>
+                </section>
+
+
 {% endblock%}

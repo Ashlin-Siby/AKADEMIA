@@ -1,0 +1,77 @@
+.eventsEntry {
+  background-color: #eee;
+  width: 100%;
+}
+.eventsList {
+  -ms-overflow-style:none;
+  overflow: -moz-scrollbars-none;
+
+}
+
+.eventsList::-webkit-scrollbar {
+  display: none;
+}
+
+.eventsHeading {
+  font-size: 1.5rem;
+}
+.eventsEntries {
+  font-size: 1.2rem;
+}
+
+.calEventsMainBox {
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.mainCalendarBox {
+  min-height: 500px;
+  width: 40%;
+}
+
+.mainEventsBox {
+  min-height: 500px;
+  width: 40%;
+}
+.detailsEntryName {
+  font-size: 2rem;
+}
+.detailsEntryDate {
+  font-size: 2rem;
+}
+
+#eventsDetails {
+  flex-flow: row wrap;
+
+}
+
+@media screen and (max-width: 1370px) {
+   .mainCalendarBox {
+     width: 90%;
+   }
+   .mainEventsBox {
+     width: 90%;
+   }
+   .calEventsMainBox {
+     flex-direction: column;
+     align-items: center;
+   }
+   .eventsHeading {
+     font-size: 1rem;
+   }
+   .eventsEntries {
+     font-size: 0.8rem;
+   }
+   .detailsEntryName {
+     font-size: 1.25rem;
+   }
+   .detailsEntryDate {
+     font-size: 1.25rem;
+   }
+
+
+}

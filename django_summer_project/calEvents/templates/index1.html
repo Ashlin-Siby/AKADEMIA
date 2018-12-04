@@ -1,0 +1,30 @@
+{% extends 'events_base.html' %}
+
+{% block content %}
+<div id="loads"></div>
+<div class="" style=" padding: 40px 50px; display: flex; flex-direction: row; justify-content: center; align-items: center;  width: 100%;">
+  <div style="margin-right: 30px; height: 600px;">
+    <h1>Calendar</h1>
+    <div class="container" style="border: 1px solid #dcdcdc; height: 500px;">
+      <!-- Calendar -->
+    	<div class="hello-week"></div>
+    	<!-- End Calendar -->
+    </div>
+  </div>
+
+  <div class="" style="height: 600px;">
+    <h1>Events</h1>
+    <div class="container" style="overflow: scroll; border: 1px solid #dcdcdc; height: 500px; ">
+
+      <div class="row">
+        {% for entry in entries %}
+          {% include 'entry.html' %}
+        {% endfor %}
+      </div>
+      <div class="" style="width: 100%; margin-right: -15px; margin-left: -15px;">
+        <button style="width: 100%;" onclick="window.location='{% url 'calEvents:add' %}'" type="button" class="btn btn-success">Add Entry</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

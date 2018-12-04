@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'summer_project',
     'study_corner',
+    'calEvents',
 ]
 
 MIDDLEWARE = [
