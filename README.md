@@ -3,7 +3,7 @@
 ## Setup Instructions
 
 * Requirements: Pyhton, Anaconda3, Internet
-* Open command prompt in project folder and run following commands to setup project
+* Open project folder in command prompt and run following commands to setup project
 	* conda create --name DjangoEnv
 	* activate DjangoEnv
 	* pip install -r requirements.txt
