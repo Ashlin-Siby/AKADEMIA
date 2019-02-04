@@ -1,9 +1,7 @@
-[Default]
-max_line_length = 80
-use_spaces = True
-
 [cli]
 bears = SpaceConsistencyBear, QuotesBear
+files = **.py
+use_spaces = True
 language = Python
 preferred_quotation = "
 default_actions = **: ApplyPatchAction
