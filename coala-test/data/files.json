@@ -1,0 +1,76 @@
+{
+  "/home/kvgarg/AKADEMIA/django_summer_project": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/populate_summer_project.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents",
+    "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project",
+    "/home/kvgarg/AKADEMIA/django_summer_project/manage.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/calEvents": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/models.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/__init__.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/forms.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/apps.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/urls.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/admin.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/tests.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/views.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations/0002_auto_20180721_2219.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations/0001_initial.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations/0003_auto_20181201_1303.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/calEvents/migrations/__init__.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project/urls.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project/settings.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project/wsgi.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/django_summer_project/__init__.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/study_corner": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/forms.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/urls.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/models.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/views.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/__init__.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/admin.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/tests.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/study_corner/apps.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/summer_project": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/views.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/admin.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/forms.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/migrations",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/__init__.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/models.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/apps.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/urls.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/tests.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/migrations": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/migrations/__init__.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/migrations/0001_initial.py",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/migrations/0002_delete_eventsinfo.py"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css"
+  ],
+  "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css": [
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/style-responsive.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/style.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/style_new.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/dashboard_student_style.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/events_style.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/zabuto_calendar.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/demo.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/to-do.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/helloweek.min.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/table-responsive.css",
+    "/home/kvgarg/AKADEMIA/django_summer_project/summer_project/static/css/bootstrap.min.css"
+  ]
+}

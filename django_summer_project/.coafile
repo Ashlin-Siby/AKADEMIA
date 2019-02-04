@@ -1,9 +1,0 @@
-[all]
-language = Python
-bears = SpaceConsistencyBear,LineLengthBear,PycodestyleBear,PyLintBear
-files = **.py
-use_spaces = True
-
-[css]
-bears = CSSLintBear
-files = ./summer_project/static/css/**.css
