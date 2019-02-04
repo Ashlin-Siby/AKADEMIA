@@ -6,7 +6,7 @@ language = Python
 preferred_quotation = "
 default_actions = **: ApplyPatchAction
 
-[LineCounting]
+[cli.LineCounting]
 enabled = False
 bears = LineCountBear
 max_lines_per_file = 1000
