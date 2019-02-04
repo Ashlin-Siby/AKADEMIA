@@ -1,14 +1,10 @@
 import os
+import django
+from faker import Faker
+from summer_project.models import MyCustomUser, StudentInfo, Batch
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_summer_project.settings")
-
-import django
-
 django.setup()
-
-from faker import Faker
-from summer_project.models import MyCustomUser, MyCustomUserManager, StudentInfo, TeacherInfo, Batch
-
 fakegen = Faker()
 
 

@@ -1,19 +1,17 @@
-from django.contrib import messages
-from django.db.models import Q
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import CreateView, TemplateView, View, ListView, DeleteView, FormView
-from django.core.validators import ValidationError
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
-from populate_summer_project import createMultipleUsers
-from .forms import MultiUsersForms
-from summer_project.forms import UserCreationForm, FileUploaderForm
-from summer_project.models import MyCustomUser, StudentInfo, TeacherInfo, Batch, Semester, Subjects, Files
-from faker import Faker
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.validators import ValidationError
+from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, TemplateView, ListView, DeleteView, FormView
+from populate_summer_project import createMultipleUsers
+from summer_project.forms import FileUploaderForm
+from summer_project.models import MyCustomUser, StudentInfo, TeacherInfo, Batch, Semester, Subjects, Files
+
+from .forms import MultiUsersForms
 
 
 class StudyCornerView(LoginRequiredMixin, TemplateView):

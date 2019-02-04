@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from .models import MyCustomUser
 from . import models
+from .models import MyCustomUser
 
 User = get_user_model()
 

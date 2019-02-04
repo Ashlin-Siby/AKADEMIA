@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
-from .models import Entry
-from .forms import EntryForm
 import datetime
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+
+from .forms import EntryForm
+from .models import Entry
+
 
 # Create your views here.
 

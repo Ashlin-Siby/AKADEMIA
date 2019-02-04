@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import Group
-from .forms import UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
 from . import models
+from .forms import UserCreationForm
 
 # Register your models here.
 admin.site.unregister(Group)
@@ -48,7 +49,7 @@ class StudentInfoAdmin(admin.ModelAdmin):
 
 class SubjectsAdmin(admin.ModelAdmin):
     model = models.Subjects
-    list_display = ["subjectCode","subjectName","semesterNo","teacherName"]
+    list_display = ["subjectCode", "subjectName", "semesterNo", "teacherName"]
 
 
 admin.site.register(models.MyCustomUser, UserAdmin)

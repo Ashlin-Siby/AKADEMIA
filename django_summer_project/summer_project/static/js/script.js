@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    
     $("#stud").click(function(){
         $("#studLogin").addClass("displayIt");
         $("#teach").addClass("dontDisplay");
@@ -19,6 +18,5 @@ $(document).ready(function(){
         $("#teach").addClass("dontDisplay");
         $("#admin").addClass("dontDisplay");
         $("#stud").addClass("dontDisplay");
-    }); 
-
+    });
 });

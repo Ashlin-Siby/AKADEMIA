@@ -1,12 +1,27 @@
 [cli]
-bears = SpaceConsistencyBear, QuotesBear
 files = **.py
 use_spaces = True
+
+[cli.python]
+bears = SpaceConsistencyBear, QuotesBear, PyFlakesBear
 language = Python
 preferred_quotation = "
+max_line_length = 120
 default_actions = **: ApplyPatchAction
 
-[LineCounting]
-enabled = False
+[cli.linecount]
 bears = LineCountBear
-max_lines_per_file = 1000
+max_lines_per_file = 500
+
+[cli.javascript]
+files = django_summer_project/calEvents/static/js/calendar.js, django_summer_project/calEvents/static/js/events.js, django_summer_project/summer_project/static/js/script.js
+bears = LineLengthBear, SpaceConsistencyBear
+max_line_length = 90
+allow_unused_variables = True
+default_actions = **: ApplyPatchAction
+
+[cli.css]
+files = django_summer_project/summer_project/static/css/**.css
+ignore = django_summer_project/summer_project/static/css/bootstrap.min.css, django_summer_project/summer_project/static/css/helloweek.min.css
+bears = LineLengthBear
+max_line_length = 120

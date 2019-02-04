@@ -1,9 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import User, PermissionsMixin
-from django.urls import reverse
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import RegexValidator
-from time import strftime
+from django.db import models
+from django.urls import reverse
 
 USERNAME_REGEX = "^[0-9a-zA-Z.+-]*$"
 NAME_REGEX = "^[a-zA-Z.+-]*$"

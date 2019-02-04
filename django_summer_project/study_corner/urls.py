@@ -1,9 +1,8 @@
-from django.contrib import admin
-from django.urls import path
-from django.conf.urls import url, include
-from . import views
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import url
+from django.conf.urls.static import static
+
+from . import views
 
 app_name = "study_corner"
 
@@ -37,5 +36,5 @@ urlpatterns = [
                       name="t_fileslist"),
                   url(r"^add_file/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/(?P<teacherName_pk>[-\w\s.]+)/$", views.TeacherFileUploader.as_view(),
                       name="uploadfile"),
-                url(r"create/multiple/users/$",views.CreateMultiUsers.as_view(),name="createmultipleusers")
+                url(r"create/multiple/users/$", views.CreateMultiUsers.as_view(),name="createmultipleusers")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

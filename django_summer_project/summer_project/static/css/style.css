@@ -1,11 +1,3 @@
-
-body{
-   /*background: #000000; fallback for old browsers */
-  /*background: -webkit-linear-gradient(to right, #000000, #434343); /* Chrome 10-25, Safari 5.1-6 */
-  /*background: linear-gradient(to right, #000000, #434343);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-
 @font-face {
     font-family: 'eraserdust';
     src: url('../fonts/eraserdust-webfont.woff2') format('woff2'),
@@ -146,16 +138,16 @@ margin: auto;
 }
 
 #unwanted{
-	display: none;
+  display: none;
 }
-  .displayIt{
-  	padding-top: 5px;
+.displayIt{
+  padding-top: 5px;
   }
-  .myButton{
-  	font-size: 20px;
+.myButton{
+  font-size: 20px;
   }
-  .heading1{
-  	font-size: 50px;
+.heading1{
+  font-size: 50px;
   }
 }
 
@@ -1607,7 +1599,9 @@ PANELS CONFIGURATIONS
 #op2:checked ~ label[for=op2]:before,
 #op3:checked ~ label[for=op3]:before{
   border: 2px solid #96c93c;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpinHLMhgEHKADia0xQThIQs6JJ9gPxZhYQAcS6QHwDiI8hSYJAC0gBPxDLAvFcIJ6JJJkDxFNBVtgBcQ8Qa6BLghgwN4A4a9ElQYAFSj8C4mwg3o8sCQIAAQYA78QTYqnPZuEAAAAASUVORK5CYII=') no-repeat center center;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2Fy" +
+  "ZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpinHLMhgEHKADia0xQThIQs6JJ9gPxZhYQAcS6QHwDiI8hSYJAC0gBPxDLAvF" +
+  "cIJ6JJJkDxFNBVtgBcQ8Qa6BLghgwN4A4a9ElQYAFSj8C4mwg3o8sCQIAAQYA78QTYqnPZuEAAAAASUVORK5CYII=") no-repeat center center;
 }
 
 /* PROFILE PANELS */
@@ -2102,7 +2096,8 @@ ul li {
   padding: 5px 10px;
   display: inline-block;
 }
-.dataTables_paginate.paging_bootstrap.pagination li:hover a, .dataTables_paginate.paging_bootstrap.pagination li.active a {
+.dataTables_paginate.paging_bootstrap.pagination li:hover a,
+.dataTables_paginate.paging_bootstrap.pagination li.active a {
   color: #fff;
   background: #4ECDC4;
   border-radius: 3px;

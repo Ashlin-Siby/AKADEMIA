@@ -1,20 +1,23 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import CreateView, TemplateView, View, FormView, UpdateView, DetailView
-from django.core.validators import ValidationError
+import datetime
+
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.validators import ValidationError
+from django.http import HttpResponseRedirect  # Ignore PyFlakesBear
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, TemplateView, View, FormView, UpdateView, DetailView
+
 from .forms import UserCreationForm, ChangePasswordForm
 from .models import MyCustomUser, StudentInfo, TeacherInfo
-from django.conf import settings
-import datetime
 
 
 # Create your views here.
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("login"))
+
 
 # Get current month
 def getMonth():

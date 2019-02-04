@@ -43,5 +43,6 @@ function showCalEvents(month) {
 }
 
 function showEventsToday(date, month) {
-  $('.hello-week__day').attr('onclick',window.location.href="eventsToday/" + date + "/" + month);
+  $('.hello-week__day').attr('onclick', window.location.href="eventsToday/" +
+                                date + "/" + month);
 }
