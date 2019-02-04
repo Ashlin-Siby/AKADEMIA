@@ -10,15 +10,15 @@ admin.site.unregister(Group)
 
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreationForm
-    list_display = ("username", "email", "is_staff", "is_teacher", "is_student")
-    list_filter = ["is_staff", "is_teacher", "is_student"]
+    list_display = ('username', 'email', 'is_staff', 'is_teacher', 'is_student')
+    list_filter = ['is_staff', 'is_teacher', 'is_student']
     filter_horizontal = ()
     fieldsets = (
-        (None, {"fields": ("username", "email", "password", "first_name", "last_name")}),
-        ("Permisssions", {"fields": ("is_staff", "is_teacher", "is_student")})
+        (None, {'fields': ('username', 'email', 'password', 'first_name', 'last_name')}),
+        ('Permisssions', {'fields': ('is_staff', 'is_teacher', 'is_student')})
     )
-    search_fields = ("username", "email")
-    ordering = ("username", "email")
+    search_fields = ('username', 'email')
+    ordering = ('username', 'email')
 
 
 class FilesAdmin(admin.ModelAdmin):
@@ -28,12 +28,12 @@ class FilesAdmin(admin.ModelAdmin):
 
 class BatchAdmin(admin.ModelAdmin):
     model = models.Batch
-    list_display = ["batchYear"]
+    list_display = ['batchYear']
 
 
 class SemesterAdmin(admin.ModelAdmin):
     model = models.Semester
-    list_display = ["semesterNo", "batchYear"]
+    list_display = ['semesterNo', 'batchYear']
 
 
 class TeacherInfoAdmin(admin.ModelAdmin):
@@ -48,7 +48,7 @@ class StudentInfoAdmin(admin.ModelAdmin):
 
 class SubjectsAdmin(admin.ModelAdmin):
     model = models.Subjects
-    list_display = ["subjectCode","subjectName","semesterNo","teacherName"]
+    list_display = ['subjectCode','subjectName','semesterNo','teacherName']
 
 
 admin.site.register(models.MyCustomUser, UserAdmin)

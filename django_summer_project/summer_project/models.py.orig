@@ -5,8 +5,8 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.core.validators import RegexValidator
 from time import strftime
 
-USERNAME_REGEX = "^[0-9a-zA-Z.+-]*$"
-NAME_REGEX = "^[a-zA-Z.+-]*$"
+USERNAME_REGEX = '^[0-9a-zA-Z.+-]*$'
+NAME_REGEX = '^[a-zA-Z.+-]*$'
 
 
 class MyCustomUserManager(BaseUserManager):
@@ -17,8 +17,8 @@ class MyCustomUserManager(BaseUserManager):
         user = self.model(username=username,
                           email=self.normalize_email(email), **kwargs)
 
-        user.first_name = kwargs["first_name"]
-        user.last_name = kwargs["last_name"]
+        user.first_name = kwargs['first_name']
+        user.last_name = kwargs['last_name']
         user.set_password(password)
         user.save(using=self._db)
 
@@ -51,9 +51,9 @@ class MyCustomUser(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=300,
                                 unique=True,
                                 validators=[RegexValidator(regex=USERNAME_REGEX,
-                                                           message="Incorrect Username - Should be Alphanumeric.",
-                                                           code="Invalid Username.Please Check It!!!")])
-    email = models.EmailField(max_length=50, unique=True, verbose_name="email address")
+                                                           message='Incorrect Username - Should be Alphanumeric.',
+                                                           code='Invalid Username.Please Check It!!!')])
+    email = models.EmailField(max_length=50, unique=True, verbose_name='email address')
 
     first_name = models.CharField(max_length=50, default=None, null=True, blank=True,
                                   validators=[RegexValidator(regex=NAME_REGEX,
@@ -70,8 +70,8 @@ class MyCustomUser(AbstractBaseUser,PermissionsMixin):
 
     objects = MyCustomUserManager()
 
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email"]
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
@@ -94,7 +94,7 @@ class MyCustomUser(AbstractBaseUser,PermissionsMixin):
         return True
 
     def get_absolute_url(self):
-        return reverse("index")
+        return reverse('index')
 
 
 class Batch(models.Model):
@@ -109,21 +109,21 @@ class Semester(models.Model):
 class Subjects(models.Model):
     subjectCode = models.CharField(max_length=6)
     subjectName = models.CharField(max_length=150)
-    semesterNo = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name="Semester_No")
+    semesterNo = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='Semester_No')
     teacherName = models.CharField(max_length=50)
 
 
 class Files(models.Model):
-    filePath = models.FileField(upload_to="uploads/%Y/%m/%d/", verbose_name="File")
+    filePath = models.FileField(upload_to='uploads/%Y/%m/%d/', verbose_name='File')
     fileName = models.CharField(max_length=100)
-    fileURL = models.URLField(blank=True, null=True, default=None, verbose_name="File URL")
-    fileType = models.CharField(choices=(("notes", "Notes"), ("question_paper", "Question Papers"), ("study_material", "Study Material")),
-                                max_length=20, verbose_name="File Type")
-    teacherName = models.ForeignKey(Subjects, on_delete=models.CASCADE, related_name="Teaher_Name",
-                                    verbose_name="Teacher Name")
-    subjCode = models.ForeignKey(Subjects, on_delete=models.CASCADE, related_name="Subject_Code",
-                                 verbose_name="Subject Code")
-    uploadedBy = models.ForeignKey(MyCustomUser,on_delete=models.CASCADE,verbose_name="Uploaded By")
+    fileURL = models.URLField(blank=True, null=True, default=None, verbose_name='File URL')
+    fileType = models.CharField(choices=(('notes', 'Notes'), ('question_paper', 'Question Papers'), ('study_material', 'Study Material')),
+                                max_length=20, verbose_name='File Type')
+    teacherName = models.ForeignKey(Subjects, on_delete=models.CASCADE, related_name='Teaher_Name',
+                                    verbose_name='Teacher Name')
+    subjCode = models.ForeignKey(Subjects, on_delete=models.CASCADE, related_name='Subject_Code',
+                                 verbose_name='Subject Code')
+    uploadedBy = models.ForeignKey(MyCustomUser,on_delete=models.CASCADE,verbose_name='Uploaded By')
 
 
 class TeacherInfo(models.Model):
@@ -135,7 +135,7 @@ class TeacherInfo(models.Model):
     add_role = models.CharField(max_length=40, blank=True)
     web_link = models.URLField(blank=True)
     contact = models.PositiveIntegerField()
-    pic = models.ImageField(upload_to="profile_pic", blank=True)
+    pic = models.ImageField(upload_to='profile_pic', blank=True)
 
     def __str__(self):
         return self.user.username
@@ -149,7 +149,7 @@ class StudentInfo(models.Model):
     department = models.CharField(max_length=30)
     roll_no = models.CharField(max_length=10)
     contact = models.PositiveIntegerField(null=True)
-    pic = models.ImageField(upload_to="profile_pic", blank=True)
+    pic = models.ImageField(upload_to='profile_pic', blank=True)
 
     def __str__(self):
         return self.user.username

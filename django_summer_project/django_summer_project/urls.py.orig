@@ -22,10 +22,10 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    url(r"^$", views.index.as_view(), name="login"),
-    url(r"^logout/",views.logout_view,name="logout"),
-    path("admin/", admin.site.urls),
-    url(r"^akademia/", include("summer_project.urls")),
-    url(r"^akademia/study/", include("study_corner.urls")),
-    url(r"^akademia/calEvents/", include("calEvents.urls")),
+    url(r'^$', views.index.as_view(), name='login'),
+    url(r'^logout/',views.logout_view,name='logout'),
+    path('admin/', admin.site.urls),
+    url(r'^akademia/', include('summer_project.urls')),
+    url(r'^akademia/study/', include('study_corner.urls')),
+    url(r'^akademia/calEvents/', include('calEvents.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

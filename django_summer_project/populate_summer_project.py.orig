@@ -1,6 +1,6 @@
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_summer_project.settings")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_summer_project.settings')
 
 import django
 
@@ -110,7 +110,7 @@ def populate_super_user(N):
             print("SuperUser Not created")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print("POPULATING SCRIPT!!!!")
     # createMultipleUsers(99,99,2018,"Electrical",1)
     nTeachers = int(input("Enter How many New Fake Teachers You want to create?"))
