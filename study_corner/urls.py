@@ -36,5 +36,5 @@ urlpatterns = [
                       name="t_fileslist"),
                   url(r"^add_file/(?P<t_type_pk>[-\w]+)/(?P<t_code_pk>[-\w]+)/(?P<teacherName_pk>[-\w\s.]+)/$", views.TeacherFileUploader.as_view(),
                       name="uploadfile"),
-                url(r"create/multiple/users/$", views.CreateMultiUsers.as_view(),name="createmultipleusers")
+                url(r"create/multiple/users/$", views.CreateMultiUsers.as_view(), name="createmultipleusers")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
