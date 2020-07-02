@@ -1,8 +1,10 @@
 # AKADEMIA
 
+A platform where institution administrators, teachers, and students can share the study material with each other, and upload events details that are to happen in the institution.
+
 ## Setup Instructions
 
-* Requirements: Pyhton, Anaconda3, Internet
+* Requirements: Python, Anaconda3, Internet
 * Open project folder in command prompt and run following commands to setup project
 	* conda create --name DjangoEnv
 	* activate DjangoEnv
