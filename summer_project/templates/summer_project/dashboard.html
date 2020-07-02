@@ -1,0 +1,240 @@
+{% extends 'summer_project/base.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+<!--<div class="container" id="mainContent">-->
+    <head>
+        <meta charset="utf-8">
+        <title>Student Dashboard</title>
+    </head>
+    {% if user.is_staff %}
+        <section id="main-content">
+         <section class="wrapper">
+           <div class="row">
+             <div class="col-lg-9 main-chart">
+               <!--CUSTOM CHART START -->
+               <div class="border-head">
+                 <h3>ADMIN PANEL</h3>
+               </div>
+
+               <!--custom chart end-->
+               <div class="row mt">
+                 <!-- SERVER STATUS PANELS -->
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                 <div class="custom-box">
+                   <div class="servicetitle">
+                     <h4>Student Corner</h4>
+                     <hr>
+                   </div>
+                   <div class="icn-main-container">
+                     <span class="icn-container">SC</span>
+                   </div>
+                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                   <a class="btn btn-theme" href="{% url 'study_corner:studyCorner' %}">Let's Go</a>
+                 </div>
+               </div>
+                 <!-- /col-md-4-->
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                 <div class="custom-box">
+                   <div class="servicetitle">
+                     <h4>CRUD Users</h4>
+                     <hr>
+                   </div>
+                   <div class="icn-main-container">
+                     <span class="icn-container">CU</span>
+                   </div>
+                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                   <a class="btn btn-theme" href="http://127.0.0.1:8000/admin/summer_project/mycustomuser/?is_staff__exact=0">Let's Go</a>
+                 </div>
+               </div>
+
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                 <div class="custom-box">
+                   <div class="servicetitle">
+                     <h4>Create Multiple Users</h4>
+                     <hr>
+                   </div>
+                   <div class="icn-main-container">
+                     <span class="icn-container">MU</span>
+                     </div>
+                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+                   <a class="btn btn-theme" href="{% url 'study_corner:createmultipleusers' %}">Let's Go</a>
+                 </div>
+               </div>
+                 <!-- /col-md-4 -->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                 <div class="custom-box">
+                   <div class="servicetitle">
+                     <h4>Academic And Holiday Calendar</h4>
+                     <hr>
+                   </div>
+                   <div class="icn-main-container">
+                     <span class="icn-container">AC</span>
+                   </div>
+                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                   <a class="btn btn-theme" href="{% url 'calEvents:index' %}">Let's Go</a>
+                 </div>
+                 <!-- end custombox -->
+               </div>
+                 <!-- /col-md-4 -->
+               </div>
+               <!-- /row -->
+
+               <!-- /row -->
+             </div>
+             <!-- /col-lg-9 END SECTION MIDDLE -->
+             <!-- **********************************************************************************************************************************************************
+                 RIGHT SIDEBAR CONTENT
+                 *********************************************************************************************************************************************************** -->
+
+             <!-- /col-lg-3 -->
+           </div>
+           <!-- /row -->
+         </section>
+        </section>
+
+
+
+    {% elif user.is_student %}
+     <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-9 main-chart">
+            <!--CUSTOM CHART START -->
+            <div class="border-head">
+              <h3>STUDY CORNER</h3>
+            </div>
+
+            <!--custom chart end-->
+            <div class="row mt">
+              <!-- SERVER STATUS PANELS -->
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="servicetitle">
+                  <h4>Notes</h4>
+                  <hr>
+                </div>
+                <div class="icn-main-container">
+                  <span class="icn-container">N</span>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                <a class="btn btn-theme" href="{% url 'study_corner:batchlist' type_pk='notes' %}">Let's Go</a>
+              </div>
+            </div>
+              <!-- /col-md-4-->
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="servicetitle">
+                  <h4>Question Paper</h4>
+                  <hr>
+                </div>
+                <div class="icn-main-container">
+                  <span class="icn-container">QP</span>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                <a class="btn btn-theme" href="{% url 'study_corner:batchlist' type_pk='question_paper' %}">Let's Go</a>
+              </div>
+            </div>
+              <!-- /col-md-4 -->
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="servicetitle">
+                  <h4>Study Material</h4>
+                  <hr>
+                </div>
+                <div class="icn-main-container">
+                  <span class="icn-container">SM</span>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                <a class="btn btn-theme" href="{% url 'study_corner:sm_subjects' sm_pk='study_material' %}">Let's Go</a>
+              </div>
+              <!-- end custombox -->
+            </div>
+              <!-- /col-md-4 -->
+            </div>
+            <!-- /row -->
+
+            <!-- /row -->
+          </div>
+          <!-- /col-lg-9 END SECTION MIDDLE -->
+          <!-- **********************************************************************************************************************************************************
+              RIGHT SIDEBAR CONTENT
+              *********************************************************************************************************************************************************** -->
+
+          <!-- /col-lg-3 -->
+        </div>
+        <!-- /row -->
+      </section>
+     </section>
+    {% elif user.is_teacher and user.is_staff == False %}
+     <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-9 main-chart">
+            <!--CUSTOM CHART START -->
+            <div class="border-head">
+              <h3>STUDY CORNER</h3>
+            </div>
+
+            <!--custom chart end-->
+            <div class="row mt">
+              <!-- SERVER STATUS PANELS -->
+              <!-- /col-md-4-->
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="servicetitle">
+                  <h4>Question Paper</h4>
+                  <hr>
+                </div>
+                <div class="icn-main-container">
+                  <span class="icn-container">QP</span>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                <a class="btn btn-theme" href="{% url 'study_corner:t_subjectslist' t_type_pk='question_paper' %}">Let's Go</a>
+              </div>
+            </div>
+              <!-- /col-md-4 -->
+             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="servicetitle">
+                  <h4>Study Material</h4>
+                  <hr>
+                </div>
+                <div class="icn-main-container">
+                  <span class="icn-container">SM</span>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+
+                <a class="btn btn-theme" href="{% url 'study_corner:t_subjectslist' t_type_pk='study_material' %}">Let's Go</a>
+              </div>
+              <!-- end custombox -->
+            </div>
+              <!-- /col-md-4 -->
+            </div>
+            <!-- /row -->
+
+            <!-- /row -->
+          </div>
+          <!-- /col-lg-9 END SECTION MIDDLE -->
+          <!-- **********************************************************************************************************************************************************
+              RIGHT SIDEBAR CONTENT
+              *********************************************************************************************************************************************************** -->
+
+          <!-- /col-lg-3 -->
+        </div>
+        <!-- /row -->
+      </section>
+     </section>
+
+    {% endif %}
+
+<!--</div>-->
+{% endblock %}
