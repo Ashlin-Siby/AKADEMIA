@@ -25,7 +25,7 @@ IGitt==0.4.1
 markdown2==2.3.6
 oauthlib==2.1.0
 pbr==5.1.1
-Pillow==5.3.0
+Pillow==9.3.0
 pycparser==2.19
 PyGithub==1.43.3
 PyJWT==1.5.3
